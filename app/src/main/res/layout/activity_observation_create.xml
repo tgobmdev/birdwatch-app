@@ -65,51 +65,11 @@
     android:layout_marginBottom="16dp"
     android:importantForAutofill="no" />
 
-  <RadioGroup
-    android:id="@+id/radioGroupSpecies"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    app:layout_constraintTop_toBottomOf="@id/editTextLocation"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
-    android:layout_marginTop="16dp"
-    android:layout_marginBottom="16dp">
-
-    <RadioButton
-      android:id="@+id/radioButtonSpecies1"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/species_masculine_gender" />
-
-    <RadioButton
-      android:id="@+id/radioButtonSpecies2"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/species_feminine_gender" />
-
-    <!-- Add more RadioButton options as needed -->
-  </RadioGroup>
-
-  <CheckBox
-    android:id="@+id/checkBoxObservationType"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/confirmed_observation"
-    app:layout_constraintTop_toBottomOf="@id/radioGroupSpecies"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
-    android:layout_marginTop="16dp" />
-
   <Spinner
-    android:id="@+id/spinnerBirdSpecies"
+    android:id="@+id/spinnerSpecies"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
-    app:layout_constraintTop_toBottomOf="@id/checkBoxObservationType"
+    app:layout_constraintTop_toBottomOf="@id/editTextLocation"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     android:layout_marginStart="16dp"
@@ -121,25 +81,25 @@
     android:id="@+id/buttonSave"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
-    android:text="@string/save"
-    app:layout_constraintTop_toBottomOf="@id/spinnerBirdSpecies"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginTop="16dp"
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
-    android:layout_marginTop="16dp"
-    android:layout_marginBottom="8dp" />
+    android:onClick="saveObservation"
+    android:text="@string/save"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/spinnerSpecies" />
 
   <Button
     android:id="@+id/buttonClear"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
-    android:text="@string/clear"
-    app:layout_constraintTop_toBottomOf="@id/buttonSave"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginTop="8dp"
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="16dp" />
+    android:onClick="clearForm"
+    android:text="@string/clear"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/buttonSave" />
 </androidx.constraintlayout.widget.ConstraintLayout>
