@@ -11,4 +11,10 @@
   <string name="save">Save</string>
   <string name="clear">Clear</string>
   <string name="create_observation">Create Observation</string>
+  <string name="observation_list">Observation List</string>
+  <string name="view_observations">View Observations</string>
+  <string name="view_observation_id">ID:</string>
+  <string name="view_observation_date_and_time">Date and Time:</string>
+  <string name="view_observation_location">Location:</string>
+  <string name="view_observation_species">Species:</string>
 </resources>

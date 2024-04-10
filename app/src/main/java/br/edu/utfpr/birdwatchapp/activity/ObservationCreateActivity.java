@@ -1,4 +1,4 @@
-package br.edu.utfpr.birdwatchapp;
+package br.edu.utfpr.birdwatchapp.activity;
 
 import android.os.Bundle;
 import android.view.inputmethod.InputMethodManager;
@@ -10,6 +10,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import br.edu.utfpr.birdwatchapp.R;
 
 public class ObservationCreateActivity extends AppCompatActivity {
 
@@ -49,8 +50,8 @@ public class ObservationCreateActivity extends AppCompatActivity {
   }
 
   private void setupSpinner() {
-    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.bird_species,
-        android.R.layout.simple_spinner_item);
+    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+        R.array.observation_species, android.R.layout.simple_spinner_item);
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     spinnerBirdSpecies.setAdapter(adapter);
   }
