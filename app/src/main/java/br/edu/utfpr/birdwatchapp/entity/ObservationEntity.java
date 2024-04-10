@@ -4,10 +4,11 @@ package br.edu.utfpr.birdwatchapp.entity;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity(tableName = "observations")
-public class ObservationEntity {
+public class ObservationEntity implements Serializable {
 
   @PrimaryKey(autoGenerate = true)
   private long id;
