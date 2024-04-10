@@ -1,3 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="app_name">birdwatch-app</string>
+  <string name="observation_date">Observation Date</string>
+  <string name="observation_form">Observation Form</string>
+  <string name="observation_time">Observation Time</string>
+  <string name="observation_location">Observation Location</string>
+  <string name="species_masculine_gender">Masculine</string>
+  <string name="species_feminine_gender">Feminine</string>
+  <string name="confirmed_observation">Confirmed Observation</string>
+  <string name="save">Save</string>
+  <string name="clear">Clear</string>
+  <string name="create_observation">Create Observation</string>
 </resources>

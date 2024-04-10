@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="bird_species">
+    <item>Blue-and-yellow Macaw</item>
+    <item>Toco Toucan</item>
+    <item>Rufous-bellied Thrush</item>
+    <item>Harpy Eagle</item>
+    <item>Smooth-billed Ani</item>
+  </string-array>
+</resources>
