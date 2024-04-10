@@ -20,6 +20,7 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:name=".ObservationCreateActivity" />
+    <activity android:name=".activity.ObservationCreateActivity" />
+    <activity android:name=".activity.ObservationListActivity" />
   </application>
 </manifest>
