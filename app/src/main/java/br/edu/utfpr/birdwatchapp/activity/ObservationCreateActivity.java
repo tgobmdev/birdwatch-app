@@ -1,23 +1,24 @@
 package br.edu.utfpr.birdwatchapp.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import br.edu.utfpr.birdwatchapp.R;
+import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
+import br.edu.utfpr.birdwatchapp.util.DateUtil;
+import br.edu.utfpr.birdwatchapp.util.MessageUtil;
 
 public class ObservationCreateActivity extends AppCompatActivity {
 
   private EditText editTextDate, editTextTime, editTextLocation;
-  private RadioGroup radioGroupSpecies;
-  private CheckBox checkBoxObservationType;
-  private Spinner spinnerBirdSpecies;
+  private Spinner spinnerSpecies;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +28,7 @@ public class ObservationCreateActivity extends AppCompatActivity {
     editTextDate = findViewById(R.id.editTextDate);
     editTextTime = findViewById(R.id.editTextTime);
     editTextLocation = findViewById(R.id.editTextLocation);
-    radioGroupSpecies = findViewById(R.id.radioGroupSpecies);
-    checkBoxObservationType = findViewById(R.id.checkBoxObservationType);
-    spinnerBirdSpecies = findViewById(R.id.spinnerBirdSpecies);
+    spinnerSpecies = findViewById(R.id.spinnerSpecies);
 
     setup();
   }
@@ -53,7 +52,7 @@ public class ObservationCreateActivity extends AppCompatActivity {
     ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
         R.array.observation_species, android.R.layout.simple_spinner_item);
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    spinnerBirdSpecies.setAdapter(adapter);
+    spinnerSpecies.setAdapter(adapter);
   }
 
   private void setupHideKeyboard() {
@@ -76,21 +75,33 @@ public class ObservationCreateActivity extends AppCompatActivity {
     String date = editTextDate.getText().toString();
     String time = editTextTime.getText().toString();
     String location = editTextLocation.getText().toString();
-    RadioButton radioButton = findViewById(radioGroupSpecies.getCheckedRadioButtonId());
-    String species = radioButton.getText().toString();
-    boolean observationConfirmed = checkBoxObservationType.isChecked();
-    String specie = spinnerBirdSpecies.getSelectedItem().toString();
+    String specie = spinnerSpecies.getSelectedItem().toString();
 
-    Toast.makeText(this, "Observation saved successfully!", Toast.LENGTH_SHORT).show();
+    ObservationEntity observation = new ObservationEntity();
+    observation.setDateTime(DateUtil.parseDate(date + "T" + time));
+    observation.setLocation(location);
+    observation.setSpecies(specie);
+
+    Intent intent = new Intent();
+    intent.putExtra(MessageUtil.EXTRA_OBSERVATION, observation);
+    setResult(Activity.RESULT_OK, intent);
+
+    finish();
   }
 
   private void clearForm() {
     editTextDate.setText("");
     editTextTime.setText("");
     editTextLocation.setText("");
-    radioGroupSpecies.clearCheck();
-    checkBoxObservationType.setChecked(false);
-    spinnerBirdSpecies.setSelection(0);
+    spinnerSpecies.setSelection(0);
     Toast.makeText(this, "Form cleared!", Toast.LENGTH_SHORT).show();
+  }
+
+  public void saveObservation(View view) {
+    saveObservation();
+  }
+
+  public void clearForm(View view) {
+    clearForm();
   }
 }

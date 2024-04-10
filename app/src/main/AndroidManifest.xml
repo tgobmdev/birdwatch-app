@@ -22,5 +22,6 @@
     </activity>
     <activity android:name=".activity.ObservationCreateActivity" />
     <activity android:name=".activity.ObservationListActivity" />
+    <activity android:name=".activity.AboutActivity" />
   </application>
 </manifest>
