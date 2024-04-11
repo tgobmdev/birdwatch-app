@@ -21,7 +21,7 @@ public class AboutActivity extends AppCompatActivity {
       actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
-    setTitle("About");
+    setTitle(R.string.about);
   }
 
   @Override
