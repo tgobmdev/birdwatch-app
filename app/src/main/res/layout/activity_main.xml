@@ -19,7 +19,7 @@
       android:id="@+id/activity_main_toolbar"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="#673AB7"
+      android:background="@color/deep_purple"
       app:title="@string/app_name"
       app:titleTextColor="@color/white" />
   </LinearLayout>

@@ -11,12 +11,12 @@ import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
 import java.util.List;
 import java.util.Objects;
 
-public class ObservationAdapter extends BaseAdapter {
+public class ObservationListViewAdapter extends BaseAdapter {
 
   private final Context context;
   private final List<ObservationEntity> observations;
 
-  public ObservationAdapter(Context context, List<ObservationEntity> observations) {
+  public ObservationListViewAdapter(Context context, List<ObservationEntity> observations) {
     this.context = context;
     this.observations = observations;
   }
@@ -39,29 +39,29 @@ public class ObservationAdapter extends BaseAdapter {
   @Override
   public View getView(int position, View convertView, ViewGroup parent) {
     View view = convertView;
-    ViewHolder viewHolder;
+    ObservationListViewHolder observationListViewHolder;
 
     if (Objects.isNull(view)) {
       view = LayoutInflater.from(context).inflate(R.layout.item_observation, parent, false);
-      viewHolder = new ViewHolder();
-      viewHolder.textViewId = view.findViewById(R.id.textViewId);
-      viewHolder.textViewDateTime = view.findViewById(R.id.textViewDateTime);
-      viewHolder.textViewLocation = view.findViewById(R.id.textViewLocation);
-      viewHolder.textViewSpecies = view.findViewById(R.id.textViewSpecies);
-      view.setTag(viewHolder);
+      observationListViewHolder = new ObservationListViewHolder();
+      observationListViewHolder.textViewId = view.findViewById(R.id.textViewId);
+      observationListViewHolder.textViewDateTime = view.findViewById(R.id.textViewDateTime);
+      observationListViewHolder.textViewLocation = view.findViewById(R.id.textViewLocation);
+      observationListViewHolder.textViewSpecies = view.findViewById(R.id.textViewSpecies);
+      view.setTag(observationListViewHolder);
     } else {
-      viewHolder = (ViewHolder) view.getTag();
+      observationListViewHolder = (ObservationListViewHolder) view.getTag();
     }
 
     ObservationEntity observation = observations.get(position);
-    viewHolder.textViewId.setText(String.valueOf(observation.getId()));
-    viewHolder.textViewDateTime.setText(String.valueOf(observation.getDateTime()));
-    viewHolder.textViewLocation.setText(observation.getLocation());
-    viewHolder.textViewSpecies.setText(observation.getSpecies());
+    observationListViewHolder.textViewId.setText(String.valueOf(observation.getId()));
+    observationListViewHolder.textViewDateTime.setText(String.valueOf(observation.getDateTime()));
+    observationListViewHolder.textViewLocation.setText(observation.getLocation());
+    observationListViewHolder.textViewSpecies.setText(observation.getSpecies());
     return view;
   }
 
-  private static class ViewHolder {
+  private static class ObservationListViewHolder {
 
     private TextView textViewId;
     private TextView textViewDateTime;

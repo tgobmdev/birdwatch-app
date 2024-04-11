@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+  <item
+    android:id="@+id/menu_observation_save"
+    android:icon="@drawable/plus_solid"
+    android:title="@string/save"
+    app:showAsAction="ifRoom" />
+  <item
+    android:id="@+id/menu_observation_clear"
+    android:icon="@drawable/broom_solid"
+    android:title="@string/clear"
+    app:showAsAction="ifRoom" />
+</menu>

@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import br.edu.utfpr.birdwatchapp.R;
-import br.edu.utfpr.birdwatchapp.adapter.ObservationAdapter;
+import br.edu.utfpr.birdwatchapp.adapter.ObservationListViewAdapter;
 import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
 import br.edu.utfpr.birdwatchapp.observable.ObservationObservable;
 import br.edu.utfpr.birdwatchapp.persistence.ObservationDatabase;
@@ -23,7 +23,7 @@ public class ObservationListActivity extends AppCompatActivity {
 
   private List<ObservationEntity> observations;
   private ListView listViewObservations;
-  private ObservationAdapter observationAdapter;
+  private ObservationListViewAdapter observationListViewAdapter;
   private ActivityResultLauncher<Intent> addObservationLauncher;
 
   @Override
@@ -33,7 +33,7 @@ public class ObservationListActivity extends AppCompatActivity {
 
     listViewObservations = findViewById(R.id.listViewObservations);
     observations = ObservationDatabase.getObservationDatabase(this).observationDao().findAll();
-    observationAdapter = new ObservationAdapter(this, observations);
+    observationListViewAdapter = new ObservationListViewAdapter(this, observations);
 
     setup();
   }
@@ -44,7 +44,7 @@ public class ObservationListActivity extends AppCompatActivity {
   }
 
   private void setupObservationArrayAdapter() {
-    listViewObservations.setAdapter(observationAdapter);
+    listViewObservations.setAdapter(observationListViewAdapter);
   }
 
   private void setupItemClickListener() {
@@ -89,7 +89,7 @@ public class ObservationListActivity extends AppCompatActivity {
         ObservationEntity observation = (ObservationEntity) data.getSerializableExtra(
             MessageUtil.EXTRA_OBSERVATION);
         ObservationObservable.getInstance().addObservation(observation);
-        observationAdapter.notifyDataSetChanged();
+        observationListViewAdapter.notifyDataSetChanged();
       }
     }
   }
