@@ -3,12 +3,14 @@ package br.edu.utfpr.birdwatchapp.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import br.edu.utfpr.birdwatchapp.R;
 import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
@@ -35,17 +37,7 @@ public class ObservationCreateActivity extends AppCompatActivity {
 
   private void setup() {
     setupSpinner();
-    setupButtonSave();
-    setupButtonClear();
     setupHideKeyboard();
-  }
-
-  private void setupButtonSave() {
-    findViewById(R.id.buttonSave).setOnClickListener(v -> saveObservation());
-  }
-
-  private void setupButtonClear() {
-    findViewById(R.id.buttonClear).setOnClickListener(v -> clearForm());
   }
 
   private void setupSpinner() {
@@ -97,11 +89,26 @@ public class ObservationCreateActivity extends AppCompatActivity {
     Toast.makeText(this, "Form cleared!", Toast.LENGTH_SHORT).show();
   }
 
-  public void saveObservation(View view) {
-    saveObservation();
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.menu_create_observation, menu);
+    return true;
   }
 
-  public void clearForm(View view) {
-    clearForm();
+  @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    int idItem = item.getItemId();
+
+    if (idItem == R.id.menu_save) {
+      saveObservation();
+      return true;
+    } else {
+      if (idItem == R.id.menu_clear) {
+        clearForm();
+        return true;
+      } else {
+        return super.onOptionsItemSelected(item);
+      }
+    }
   }
 }
