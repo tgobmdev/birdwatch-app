@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">birdwatch-app</string>
+  <string name="observation_date">Data de Observação</string>
+  <string name="observation_form">Formulário de Observação</string>
+  <string name="observation_location">Local de observação</string>
+  <string name="save">Salvar</string>
+  <string name="clear">Limpar</string>
+  <string name="create_observation">Criar Observação</string>
+  <string name="observation_list">Lista de Observação</string>
+  <string name="view_observations">Ver observações</string>
+  <string name="view_observation_id">Codigo</string>
+  <string name="view_observation_date_and_time">Data e hora:</string>
+  <string name="view_observation_location">Localização:</string>
+  <string name="view_observation_species">Espécies:</string>
+  <string name="text_about">Exemplo de transição entre atividades</string>
+  <string name="author_name">Tiago Boaventura Miranda</string>
+  <string name="logo_description">Logo UTFPR</string>
+  <string name="about">Sobre</string>
+  <string name="add">Adicionar</string>
+  <string name="yyyy_mm_dd">YYYY-MM-DD</string>
+  <string name="hh_mm">HH:MM</string>
+</resources>
