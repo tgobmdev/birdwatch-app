@@ -23,7 +23,7 @@
     android:id="@+id/editTextDate"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
-    android:hint="@string/observation_date"
+    android:hint="@string/yyyy_mm_dd"
     android:inputType="date"
     app:layout_constraintTop_toBottomOf="@id/textViewTitle"
     app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,7 @@
     android:id="@+id/editTextTime"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
-    android:hint="@string/observation_time"
+    android:hint="@string/hh_mm"
     android:inputType="time"
     app:layout_constraintTop_toBottomOf="@id/editTextDate"
     app:layout_constraintStart_toStartOf="parent"
@@ -75,5 +75,4 @@
     android:layout_marginEnd="16dp"
     android:layout_marginTop="16dp"
     android:layout_marginBottom="16dp" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
