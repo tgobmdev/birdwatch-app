@@ -22,4 +22,6 @@
   <string name="logo_description">Logo UTFPR</string>
   <string name="about">About</string>
   <string name="add">Add</string>
+  <string name="yyyy_mm_dd">YYYY-MM-DD</string>
+  <string name="hh_mm">HH:MM</string>
 </resources>
