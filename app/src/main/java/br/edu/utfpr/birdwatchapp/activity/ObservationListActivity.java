@@ -15,6 +15,7 @@ import br.edu.utfpr.birdwatchapp.R;
 import br.edu.utfpr.birdwatchapp.adapter.ObservationAdapter;
 import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
 import br.edu.utfpr.birdwatchapp.observable.ObservationObservable;
+import br.edu.utfpr.birdwatchapp.persistence.ObservationDatabase;
 import br.edu.utfpr.birdwatchapp.util.MessageUtil;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class ObservationListActivity extends AppCompatActivity {
     setContentView(R.layout.activity_observation_list);
 
     listViewObservations = findViewById(R.id.listViewObservations);
-    observations = ObservationObservable.getInstance().getObservations();
+    observations = ObservationDatabase.getObservationDatabase(this).observationDao().findAll();
     observationAdapter = new ObservationAdapter(this, observations);
 
     setup();

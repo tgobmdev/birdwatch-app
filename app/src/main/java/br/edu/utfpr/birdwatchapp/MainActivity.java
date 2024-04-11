@@ -1,56 +1,70 @@
 package br.edu.utfpr.birdwatchapp;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import br.edu.utfpr.birdwatchapp.activity.AboutActivity;
-import br.edu.utfpr.birdwatchapp.activity.ObservationCreateActivity;
-import br.edu.utfpr.birdwatchapp.activity.ObservationListActivity;
-import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
-import br.edu.utfpr.birdwatchapp.observable.ObservationObservable;
-import br.edu.utfpr.birdwatchapp.util.MessageUtil;
-import java.util.ArrayList;
-import java.util.List;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import br.edu.utfpr.birdwatchapp.pattern.strategy.NavigationActionStrategy;
+import br.edu.utfpr.birdwatchapp.pattern.strategy.action.AboutNavigationActionStrategy;
+import br.edu.utfpr.birdwatchapp.pattern.strategy.action.BirdNavigationActionStrategy;
+import br.edu.utfpr.birdwatchapp.pattern.strategy.action.ObservationNavigationActionStrategy;
+import com.google.android.material.navigation.NavigationView;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+  private DrawerLayout drawerLayout;
+  private NavigationView navigationView;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+
+    initializeUIComponents();
+    configureActionBarDrawerToggle();
+    configureNavigationView();
   }
 
-  public void viewObservations(View view) {
-    Intent intent = new Intent(MainActivity.this, ObservationListActivity.class);
-    List<ObservationEntity> observations = ObservationObservable.getInstance().getObservations();
-    intent.putExtra("observations", new ArrayList<>(observations));
-    startActivity(intent);
+  private void initializeUIComponents() {
+    drawerLayout = findViewById(R.id.activity_main_drawer_layout);
+    navigationView = findViewById(R.id.activity_main_navigation_view);
+    Toolbar toolbar = findViewById(R.id.activity_main_toolbar);
+    setSupportActionBar(toolbar);
   }
 
-  public void createObservation(View view) {
-    Intent intent = new Intent(MainActivity.this, ObservationCreateActivity.class);
-    startActivityForResult(intent, MessageUtil.REQUEST_CODE_CREATE_OBSERVATION);
+  private void configureActionBarDrawerToggle() {
+    Toolbar toolbar = findViewById(R.id.activity_main_toolbar);
+    ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
+        R.string.open, R.string.close);
+    drawerLayout.addDrawerListener(toggle);
+    toggle.syncState();
+    toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
   }
 
-  public void setupAbout(View view) {
-    Intent intent = new Intent(MainActivity.this, AboutActivity.class);
-    startActivity(intent);
-  }
-
-  @Override
-  protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-    if (requestCode == MessageUtil.REQUEST_CODE_CREATE_OBSERVATION
-        && resultCode == Activity.RESULT_OK) {
-      if (data != null && data.hasExtra(MessageUtil.EXTRA_OBSERVATION)) {
-        ObservationEntity observation = (ObservationEntity) data.getSerializableExtra(
-            MessageUtil.EXTRA_OBSERVATION);
-        ObservationObservable.getInstance().addObservation(observation);
+  private void configureNavigationView() {
+    navigationView.setNavigationItemSelectedListener(item -> {
+      Map<Integer, NavigationActionStrategy> actions = createNavigationActions();
+      NavigationActionStrategy action = actions.get(item.getItemId());
+      if (action != null) {
+        action.execute();
       }
-    }
+      closeDrawer();
+      return true;
+    });
+  }
+
+  private Map<Integer, NavigationActionStrategy> createNavigationActions() {
+    Map<Integer, NavigationActionStrategy> actions = new HashMap<>();
+    actions.put(R.id.menu_nav_observation, new ObservationNavigationActionStrategy(this));
+    actions.put(R.id.menu_nav_bird, new BirdNavigationActionStrategy(this));
+    actions.put(R.id.menu_nav_about, new AboutNavigationActionStrategy(this));
+    return actions;
+  }
+
+  private void closeDrawer() {
+    drawerLayout.closeDrawer(navigationView);
   }
 }

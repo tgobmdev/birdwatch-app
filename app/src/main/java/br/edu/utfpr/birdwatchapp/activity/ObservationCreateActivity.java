@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import br.edu.utfpr.birdwatchapp.R;
 import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
+import br.edu.utfpr.birdwatchapp.persistence.ObservationDatabase;
 import br.edu.utfpr.birdwatchapp.util.DateUtil;
 import br.edu.utfpr.birdwatchapp.util.MessageUtil;
 
@@ -73,6 +74,9 @@ public class ObservationCreateActivity extends AppCompatActivity {
     observation.setDateTime(DateUtil.parseDate(date + "T" + time));
     observation.setLocation(location);
     observation.setSpecies(specie);
+
+    ObservationDatabase.getObservationDatabase(this).observationDao()
+        .save(observation);
 
     Intent intent = new Intent();
     intent.putExtra(MessageUtil.EXTRA_OBSERVATION, observation);

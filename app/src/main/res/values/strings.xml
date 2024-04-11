@@ -20,4 +20,9 @@
   <string name="add">Add</string>
   <string name="yyyy_mm_dd">YYYY-MM-DD</string>
   <string name="hh_mm">HH:MM</string>
+  <string name="menu_nav_observations">Observations</string>
+  <string name="menu_nav_birds">Birds</string>
+  <string name="menu_nav_about">About</string>
+  <string name="open">open</string>
+  <string name="close">close</string>
 </resources>
