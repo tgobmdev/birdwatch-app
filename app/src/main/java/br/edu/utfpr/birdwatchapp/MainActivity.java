@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import br.edu.utfpr.birdwatchapp.pattern.strategy.ExecutorStrategy;
 import br.edu.utfpr.birdwatchapp.pattern.strategy.ExecutorStrategyRegistry;
 import br.edu.utfpr.birdwatchapp.pattern.strategy.executor.AboutExecutorStrategy;
 import br.edu.utfpr.birdwatchapp.pattern.strategy.executor.BirdExecutorStrategy;
@@ -21,19 +22,20 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    initializeUIComponents();
-    configureActionBarDrawerToggle();
+    initializeComponents();
+    configureDrawerToggle();
     configureNavigationView();
+    registerStrategies();
   }
 
-  private void initializeUIComponents() {
+  private void initializeComponents() {
     drawerLayout = findViewById(R.id.activity_main_drawer_layout);
     navigationView = findViewById(R.id.activity_main_navigation_view);
     Toolbar toolbar = findViewById(R.id.activity_main_toolbar);
     setSupportActionBar(toolbar);
   }
 
-  private void configureActionBarDrawerToggle() {
+  private void configureDrawerToggle() {
     Toolbar toolbar = findViewById(R.id.activity_main_toolbar);
     ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
         R.string.open, R.string.close);
@@ -44,15 +46,21 @@ public class MainActivity extends AppCompatActivity {
 
   private void configureNavigationView() {
     navigationView.setNavigationItemSelectedListener(item -> {
-      ExecutorStrategyRegistry.register(R.id.menu_nav_observation,
-          new ObservationExecutorStrategy(this)); //
-      ExecutorStrategyRegistry.register(R.id.menu_nav_bird, new BirdExecutorStrategy(this));
-      ExecutorStrategyRegistry.register(R.id.menu_nav_about, new AboutExecutorStrategy(this));
-
-      ExecutorStrategyRegistry.getExecutor(item.getItemId()).execute();
+      ExecutorStrategy executorStrategy = ExecutorStrategyRegistry.getExecutor(item.getItemId());
+      boolean executed = false;
+      if (executorStrategy != null) {
+        executed = executorStrategy.execute();
+      }
       closeDrawer();
-      return true;
+      return executed;
     });
+  }
+
+  private void registerStrategies() {
+    ExecutorStrategyRegistry.register(R.id.menu_nav_observation,
+        new ObservationExecutorStrategy(this));
+    ExecutorStrategyRegistry.register(R.id.menu_nav_bird, new BirdExecutorStrategy(this));
+    ExecutorStrategyRegistry.register(R.id.menu_nav_about, new AboutExecutorStrategy(this));
   }
 
   private void closeDrawer() {

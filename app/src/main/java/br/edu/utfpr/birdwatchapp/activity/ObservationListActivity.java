@@ -43,54 +43,52 @@ public class ObservationListActivity extends AppCompatActivity implements Action
     setContentView(R.layout.activity_observation_list);
     setTitle(R.string.label_observations);
 
+    initializeComponents();
+    registerStrategies();
+    registerActivityResultLauncher();
+  }
+
+  private void initializeComponents() {
     listViewObservations = findViewById(R.id.listViewObservations);
     observationComponent = new ObservationComponent(this);
     observationParse = new ObservationParse();
     observations = observationParse.toResponseList(observationComponent.findAllObservations());
     observationListAdapter = new ObservationListAdapter(this, observations);
     enableHomeAsUp();
-    setup();
+    setupListView();
+  }
 
+  private void registerStrategies() {
+    ExecutorStrategyRegistry.register(R.id.menu_observation_add,
+        new ObservationCreateExecutorStrategy(this, activityResultLauncher));
+    ExecutorStrategyRegistry.register(android.R.id.home, new FinishExecutorStrategy(this));
+  }
+
+  private void registerActivityResultLauncher() {
     activityResultLauncher = registerForActivityResult(
         new ActivityResultContracts.StartActivityForResult(), result -> {
           if (result.getResultCode() == Activity.RESULT_OK) {
-            observations = observationParse.toResponseList(
-                observationComponent.findAllObservations());
-            observationListAdapter.updateObservations(observations);
+            updateObservations();
           }
         });
   }
 
-  private void setup() {
-    setupObservationArrayAdapter();
-    setupItemClickListener();
-  }
-
-  private void setupObservationArrayAdapter() {
+  private void setupListView() {
     listViewObservations.setAdapter(observationListAdapter);
-  }
-
-  private void setupItemClickListener() {
     listViewObservations.setOnItemClickListener((parent, view, position, id) -> {
-      ObservationEntity observationEntity = observationComponent.findObservationById(
-          (long) position);
-      Toast.makeText(ObservationListActivity.this, observationEntity.toString(), Toast.LENGTH_SHORT)
-          .show();
+      handleItemClick(position);
     });
   }
 
-  public void onDeleteClick(View view) {
-    DialogInterface.OnClickListener listener = (dialog, which) -> {
-      if (which == DialogInterface.BUTTON_POSITIVE) {
-        int position = listViewObservations.getPositionForView(view);
-        Long id = observations.get(position).getId();
-        ObservationEntity observationEntity = observationComponent.findObservationById(id);
-        observationComponent.deleteObservation(observationEntity);
-        observations = observationParse.toResponseList(observationComponent.findAllObservations());
-        observationListAdapter.updateObservations(observations);
-      }
-    };
-    confirm(this, listener);
+  private void handleItemClick(int position) {
+    ObservationEntity observationEntity = observationComponent.findObservationById((long) position);
+    Toast.makeText(ObservationListActivity.this, observationEntity.toString(), Toast.LENGTH_SHORT)
+        .show();
+  }
+
+  private void updateObservations() {
+    observations = observationParse.toResponseList(observationComponent.findAllObservations());
+    observationListAdapter.updateObservations(observations);
   }
 
   @Override
@@ -101,13 +99,25 @@ public class ObservationListActivity extends AppCompatActivity implements Action
 
   @Override
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-    ExecutorStrategyRegistry.register(R.id.menu_observation_add,
-        new ObservationCreateExecutorStrategy(this, activityResultLauncher));
-    ExecutorStrategyRegistry.register(android.R.id.home, new FinishExecutorStrategy(this));
-
     ExecutorStrategy executorStrategy = ExecutorStrategyRegistry.getExecutor(item.getItemId());
-
     return executorStrategy != null ? executorStrategy.execute()
         : super.onOptionsItemSelected(item);
+  }
+
+  public void onDeleteClick(View view) {
+    DialogInterface.OnClickListener listener = (dialog, which) -> {
+      if (which == DialogInterface.BUTTON_POSITIVE) {
+        handleDeleteClick(view);
+      }
+    };
+    confirm(this, listener);
+  }
+
+  private void handleDeleteClick(View view) {
+    int position = listViewObservations.getPositionForView(view);
+    Long id = observations.get(position).getId();
+    ObservationEntity observationEntity = observationComponent.findObservationById(id);
+    observationComponent.deleteObservation(observationEntity);
+    updateObservations();
   }
 }
