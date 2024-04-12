@@ -7,9 +7,10 @@
   android:background="@color/very_light_gray">
   <EditText
     android:id="@+id/editTextDate"
-    android:layout_width="0dp"
+    android:layout_width="match_parent"
     android:layout_height="48dp"
     android:layout_marginTop="12dp"
+    android:layout_marginBottom="12dp"
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
     android:background="@color/white"
@@ -24,9 +25,10 @@
     app:layout_constraintTop_toBottomOf="@id/textViewDateLabel" />
   <EditText
     android:id="@+id/editTextTime"
-    android:layout_width="0dp"
+    android:layout_width="match_parent"
     android:layout_height="48dp"
     android:layout_marginTop="12dp"
+    android:layout_marginBottom="12dp"
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
     android:background="@color/white"
@@ -41,9 +43,10 @@
     app:layout_constraintTop_toBottomOf="@id/textViewTimeLabel" />
   <EditText
     android:id="@+id/editTextLocation"
-    android:layout_width="0dp"
+    android:layout_width="match_parent"
     android:layout_height="48dp"
     android:layout_marginTop="12dp"
+    android:layout_marginBottom="12dp"
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
     android:background="@color/white"
