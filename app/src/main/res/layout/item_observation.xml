@@ -5,16 +5,19 @@
   android:layout_height="wrap_content"
   android:padding="16dp">
 
-  <!-- Label e campo para o ID -->
-  <TextView
-    android:id="@+id/labelId"
-    android:textStyle="bold"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/label_observation_id"
-    android:textSize="16sp"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+  <ImageView
+    android:id="@+id/iconDelete"
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginLeft="8dp"
+    android:contentDescription="@string/img_content_description_delete"
+    android:onClick="onDeleteClick"
+    android:src="@drawable/trash_solid"
+    app:layout_constraintBottom_toTopOf="@id/textViewLocation"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@id/textViewLocation"
+    app:layout_constraintTop_toBottomOf="@id/textViewDateTime" />
 
   <TextView
     android:id="@+id/textViewId"
@@ -27,7 +30,6 @@
     app:layout_constraintStart_toEndOf="@id/labelId"
     app:layout_constraintTop_toTopOf="parent" />
 
-  <!-- Label e campo para Data/Hora -->
   <TextView
     android:id="@+id/labelDateTime"
     android:textStyle="bold"
@@ -39,19 +41,21 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/labelId" />
 
-  <!-- Label e campo para Localização -->
   <TextView
     android:id="@+id/textViewDateTime"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
     android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
     android:layout_marginLeft="8dp"
     android:textSize="16sp"
     app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintEnd_toStartOf="@id/iconDelete"
     app:layout_constraintHorizontal_bias="1.0"
     app:layout_constraintStart_toEndOf="@id/labelDateTime"
     app:layout_constraintTop_toBottomOf="@id/textViewId" />
+
   <TextView
     android:id="@+id/labelLocation"
     android:textStyle="bold"
@@ -63,7 +67,6 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/textViewDateTime" />
 
-  <!-- Label e campo para Espécie -->
   <TextView
     android:id="@+id/textViewLocation"
     android:layout_width="0dp"
@@ -73,9 +76,10 @@
     android:layout_marginLeft="8dp"
     android:textSize="16sp"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintEnd_toStartOf="@id/iconDelete"
     app:layout_constraintStart_toEndOf="@id/labelLocation"
     app:layout_constraintTop_toBottomOf="@id/textViewDateTime" />
+
   <TextView
     android:id="@+id/labelSpecies"
     android:textStyle="bold"
@@ -99,4 +103,14 @@
     app:layout_constraintHorizontal_bias="1.0"
     app:layout_constraintStart_toEndOf="@id/labelSpecies"
     app:layout_constraintTop_toBottomOf="@id/textViewLocation" />
+
+  <TextView
+    android:id="@+id/labelId"
+    android:textStyle="bold"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/label_observation_id"
+    android:textSize="16sp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

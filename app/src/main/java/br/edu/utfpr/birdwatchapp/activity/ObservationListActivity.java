@@ -1,14 +1,19 @@
 package br.edu.utfpr.birdwatchapp.activity;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog.Builder;
 import androidx.appcompat.app.AppCompatActivity;
 import br.edu.utfpr.birdwatchapp.R;
 import br.edu.utfpr.birdwatchapp.adapter.ObservationListViewAdapter;
@@ -52,6 +57,45 @@ public class ObservationListActivity extends AppCompatActivity implements Action
       Toast.makeText(ObservationListActivity.this, observation.toString(), Toast.LENGTH_SHORT)
           .show();
     });
+  }
+
+  public void alertTeste(Context context, String msg) {
+    AlertDialog.Builder builder = new Builder(this);
+    builder.setTitle("Aviso");
+    builder.setIcon(android.R.drawable.ic_dialog_alert);
+    builder.setMessage("Teste");
+
+    builder.setNeutralButton("OK", null);
+    AlertDialog alertDialog = builder.create();
+    alertDialog.show();
+  }
+
+  public void confirmarAlertTest(Context context, String msg,
+      DialogInterface.OnClickListener listener) {
+    AlertDialog alertDialog = new AlertDialog.Builder(context) //
+        .setTitle("Confirmacao") //
+        .setIcon(android.R.drawable.ic_dialog_alert) //
+        .setMessage("Teste") //
+        .setPositiveButton("Sim", listener) //
+        .setNegativeButton("Nao", listener) //
+        .create();
+    alertDialog.show();
+  }
+
+  public void onDeleteClick(View view) {
+    DialogInterface.OnClickListener listener = (dialog, which) -> {
+      if (which == DialogInterface.BUTTON_POSITIVE) {
+        int position = listViewObservations.getPositionForView(view);
+        ObservationEntity observation = observations.get(position);
+        ObservationDatabase.getObservationDatabase(getApplicationContext()).observationDao()
+            .delete(observation);
+
+        observations = ObservationDatabase.getObservationDatabase(getApplicationContext())
+            .observationDao().findAll();
+        observationListViewAdapter.updateObservations(observations);
+      }
+    };
+    confirmarAlertTest(this, "", listener);
   }
 
   @Override

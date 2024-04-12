@@ -1,6 +1,7 @@
 package br.edu.utfpr.birdwatchapp.persistence;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
@@ -13,5 +14,8 @@ public interface ObservationDao {
   List<ObservationEntity> findAll();
 
   @Insert
-  long save(ObservationEntity observationEntity);
+  void save(ObservationEntity observationEntity);
+
+  @Delete
+  void delete(ObservationEntity observationEntity);
 }

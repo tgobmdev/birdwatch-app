@@ -7,13 +7,14 @@
 
   <ListView
     android:id="@+id/listViewObservations"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:divider="@android:color/darker_gray"
     android:dividerHeight="1dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
     tools:item="@layout/item_observation"
     tools:listitem="@layout/item_observation" />
 </androidx.constraintlayout.widget.ConstraintLayout>

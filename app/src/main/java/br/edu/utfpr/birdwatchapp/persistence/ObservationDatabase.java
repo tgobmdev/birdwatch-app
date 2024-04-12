@@ -17,6 +17,7 @@ public abstract class ObservationDatabase extends RoomDatabase {
 
   public static ObservationDatabase getObservationDatabase(final Context context) {
     if (Objects.isNull(instance)) {
+      context.deleteDatabase("observations.db");
       synchronized (ObservationDatabase.class) {
         if (Objects.isNull(instance)) {
           instance = Room.databaseBuilder(context, ObservationDatabase.class, "observations.db") //

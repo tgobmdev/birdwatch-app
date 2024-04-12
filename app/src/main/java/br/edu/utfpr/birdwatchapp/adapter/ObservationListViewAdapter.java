@@ -33,14 +33,13 @@ public class ObservationListViewAdapter extends BaseAdapter {
 
   @Override
   public long getItemId(int position) {
-    return position;
+    return observations.get(position).getId();
   }
 
   @Override
   public View getView(int position, View convertView, ViewGroup parent) {
     View view = convertView;
     ObservationListViewHolder observationListViewHolder;
-
     if (Objects.isNull(view)) {
       view = LayoutInflater.from(context).inflate(R.layout.item_observation, parent, false);
       observationListViewHolder = new ObservationListViewHolder();
