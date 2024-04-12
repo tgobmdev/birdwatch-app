@@ -11,7 +11,10 @@ public interface ExecutorStrategyRegistry {
     if (strategy == null) {
       throw new IllegalArgumentException("The executor cannot be null.");
     }
-    strategyMap.put(menuItemId, strategy);
+
+    if (!strategyMap.containsKey(menuItemId)) {
+      strategyMap.put(menuItemId, strategy);
+    }
   }
 
   static ExecutorStrategy getExecutor(int menuItemId) {

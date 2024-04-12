@@ -6,6 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import br.edu.utfpr.birdwatchapp.R;
+import br.edu.utfpr.birdwatchapp.pattern.strategy.ExecutorStrategy;
+import br.edu.utfpr.birdwatchapp.pattern.strategy.ExecutorStrategyRegistry;
+import br.edu.utfpr.birdwatchapp.pattern.strategy.executor.FinishExecutorStrategy;
 import br.edu.utfpr.birdwatchapp.ui.config.ActionBarConfig;
 
 public class AboutActivity extends AppCompatActivity implements ActionBarConfig {
@@ -21,11 +24,9 @@ public class AboutActivity extends AppCompatActivity implements ActionBarConfig 
 
   @Override
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-    if (item.getItemId() == android.R.id.home) {
-      finish();
-      return true;
-    } else {
-      return super.onOptionsItemSelected(item);
-    }
+    ExecutorStrategyRegistry.register(android.R.id.home, new FinishExecutorStrategy(this));
+    ExecutorStrategy executorStrategy = ExecutorStrategyRegistry.getExecutor(item.getItemId());
+    return executorStrategy != null ? executorStrategy.execute()
+        : super.onOptionsItemSelected(item);
   }
 }

@@ -44,8 +44,8 @@ public class ObservationListActivity extends AppCompatActivity implements Action
     setTitle(R.string.label_observations);
 
     initializeComponents();
-    registerStrategies();
     registerActivityResultLauncher();
+    registerStrategies();
   }
 
   private void initializeComponents() {
@@ -75,9 +75,8 @@ public class ObservationListActivity extends AppCompatActivity implements Action
 
   private void setupListView() {
     listViewObservations.setAdapter(observationListAdapter);
-    listViewObservations.setOnItemClickListener((parent, view, position, id) -> {
-      handleItemClick(position);
-    });
+    listViewObservations.setOnItemClickListener(
+        (parent, view, position, id) -> handleItemClick(position));
   }
 
   private void handleItemClick(int position) {
