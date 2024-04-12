@@ -87,11 +87,11 @@ public class ObservationModal implements DataPickerListener, TimePickerListener 
     editTextTime.setText(formattedTime);
     editTextLocation.setText(observation.getLocation());
 
-    configureDateTimeListener(editTextDate, editTextTime);
+    configureListeners(editTextDate, editTextTime);
     configureSpecieSpinner(spinnerSpecie);
   }
 
-  private void configureDateTimeListener(EditText editTextDate, EditText editTextTime) {
+  private void configureListeners(EditText editTextDate, EditText editTextTime) {
     setDataPickerListener(context, editTextDate);
     setTimePickerListener(context, editTextTime);
   }
