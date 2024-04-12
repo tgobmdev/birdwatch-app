@@ -3,6 +3,7 @@ package br.edu.utfpr.birdwatchapp.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -22,6 +23,7 @@ import br.edu.utfpr.birdwatchapp.ui.config.KeyboardConfig;
 import br.edu.utfpr.birdwatchapp.ui.listener.DataPickerListener;
 import br.edu.utfpr.birdwatchapp.ui.listener.TimePickerListener;
 import br.edu.utfpr.birdwatchapp.util.DateUtil;
+import br.edu.utfpr.birdwatchapp.validator.ObservationValidator;
 
 public class ObservationCreateActivity extends AppCompatActivity implements ActionBarConfig,
     KeyboardConfig, DataPickerListener, TimePickerListener {
@@ -48,7 +50,6 @@ public class ObservationCreateActivity extends AppCompatActivity implements Acti
     enableHomeAsUp();
     setupSpinner();
     hideKeyboard(layoutObservation);
-
     setDataPickerListener(this, editTextDate);
     setTimePickerListener(this, editTextTime);
   }
@@ -61,6 +62,12 @@ public class ObservationCreateActivity extends AppCompatActivity implements Acti
   }
 
   private void saveObservation() {
+    ObservationValidator observationValidator = new ObservationValidator(this);
+
+    if (!observationValidator.validateAllFields(editTextDate, editTextTime, editTextLocation, spinnerSpecie)) {
+      return;
+    }
+
     String date = editTextDate.getText().toString();
     String time = editTextTime.getText().toString();
     String location = editTextLocation.getText().toString();

@@ -11,10 +11,12 @@ import android.widget.Spinner;
 import androidx.appcompat.app.AlertDialog;
 import br.edu.utfpr.birdwatchapp.R;
 import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
+import br.edu.utfpr.birdwatchapp.ui.listener.DataPickerListener;
+import br.edu.utfpr.birdwatchapp.ui.listener.TimePickerListener;
 import br.edu.utfpr.birdwatchapp.util.ConstantsUtil;
 import br.edu.utfpr.birdwatchapp.util.DateUtil;
 
-public class ObservationModal {
+public class ObservationModal implements DataPickerListener, TimePickerListener {
 
   private final Context context;
   private final ObservationEntity observation;
@@ -85,7 +87,13 @@ public class ObservationModal {
     editTextTime.setText(formattedTime);
     editTextLocation.setText(observation.getLocation());
 
+    configureDateTimeListener(editTextDate, editTextTime);
     configureSpecieSpinner(spinnerSpecie);
+  }
+
+  private void configureDateTimeListener(EditText editTextDate, EditText editTextTime) {
+    setDataPickerListener(context, editTextDate);
+    setTimePickerListener(context, editTextTime);
   }
 
   private void configureSpecieSpinner(Spinner spinnerSpecie) {
