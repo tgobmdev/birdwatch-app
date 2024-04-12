@@ -9,18 +9,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import br.edu.utfpr.birdwatchapp.R;
 import br.edu.utfpr.birdwatchapp.adapter.ObservationListAdapter;
 import br.edu.utfpr.birdwatchapp.component.ObservationComponent;
 import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
 import br.edu.utfpr.birdwatchapp.parse.ObservationParse;
+import br.edu.utfpr.birdwatchapp.pattern.strategy.ExecutorStrategy;
+import br.edu.utfpr.birdwatchapp.pattern.strategy.ExecutorStrategyRegistry;
+import br.edu.utfpr.birdwatchapp.pattern.strategy.executor.FinishActivityExecutorStrategy;
+import br.edu.utfpr.birdwatchapp.pattern.strategy.executor.ObservationCreateExecutorStrategy;
 import br.edu.utfpr.birdwatchapp.response.ObservationResponse;
 import br.edu.utfpr.birdwatchapp.ui.config.ActionBarConfig;
 import br.edu.utfpr.birdwatchapp.ui.dialog.AlertDeleteDialog;
-import br.edu.utfpr.birdwatchapp.util.MessageUtil;
 import java.util.List;
 
 public class ObservationListActivity extends AppCompatActivity implements ActionBarConfig,
@@ -31,6 +35,7 @@ public class ObservationListActivity extends AppCompatActivity implements Action
   private ObservationListAdapter observationListAdapter;
   private ObservationParse observationParse;
   private ObservationComponent observationComponent;
+  private ActivityResultLauncher<Intent> activityResultLauncher;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,15 @@ public class ObservationListActivity extends AppCompatActivity implements Action
     observationListAdapter = new ObservationListAdapter(this, observations);
     enableHomeAsUp();
     setup();
+
+    activityResultLauncher = registerForActivityResult(
+        new ActivityResultContracts.StartActivityForResult(), result -> {
+          if (result.getResultCode() == Activity.RESULT_OK) {
+            observations = observationParse.toResponseList(
+                observationComponent.findAllObservations());
+            observationListAdapter.updateObservations(observations);
+          }
+        });
   }
 
   private void setup() {
@@ -87,27 +101,13 @@ public class ObservationListActivity extends AppCompatActivity implements Action
 
   @Override
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-    int idItem = item.getItemId();
+    ExecutorStrategyRegistry.register(R.id.menu_observation_add,
+        new ObservationCreateExecutorStrategy(this, activityResultLauncher));
+    ExecutorStrategyRegistry.register(android.R.id.home, new FinishActivityExecutorStrategy(this));
 
-    if (idItem == R.id.menu_observation_add) {
-      Intent intent = new Intent(this, ObservationCreateActivity.class);
-      startActivityForResult(intent, MessageUtil.REQUEST_CODE_CREATE_OBSERVATION);
-      return true;
-    } else if (item.getItemId() == android.R.id.home) {
-      finish();
-      return true;
-    } else {
-      return super.onOptionsItemSelected(item);
-    }
-  }
+    ExecutorStrategy executorStrategy = ExecutorStrategyRegistry.getExecutor(item.getItemId());
 
-  @Override
-  protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-    if (requestCode == MessageUtil.REQUEST_CODE_CREATE_OBSERVATION
-        && resultCode == Activity.RESULT_OK) {
-      observations = observationParse.toResponseList(observationComponent.findAllObservations());
-      observationListAdapter.updateObservations(observations);
-    }
+    return executorStrategy != null ? executorStrategy.execute()
+        : super.onOptionsItemSelected(item);
   }
 }
