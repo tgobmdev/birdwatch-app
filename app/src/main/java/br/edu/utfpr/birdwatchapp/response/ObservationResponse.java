@@ -1,24 +1,22 @@
-package br.edu.utfpr.birdwatchapp.entity;
+package br.edu.utfpr.birdwatchapp.response;
 
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-import java.io.Serializable;
 import java.util.Date;
 
-@Entity(tableName = "observations")
-public class ObservationEntity implements Serializable {
+public class ObservationResponse {
 
-  @PrimaryKey(autoGenerate = true)
-  private long id;
+  private Long id;
   private Date dateTime;
   private String location;
   private String specie;
 
-  public long getId() {
+  public ObservationResponse() {
+  }
+
+  public Long getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 

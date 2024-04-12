@@ -1,8 +1,8 @@
-package br.edu.utfpr.birdwatchapp.ui.configurable;
+package br.edu.utfpr.birdwatchapp.ui.config;
 
 import androidx.appcompat.app.ActionBar;
 
-public interface ActionBarConfigurable {
+public interface ActionBarConfig {
 
   default void enableHomeAsUp() {
     ActionBar actionBar = getSupportActionBar();

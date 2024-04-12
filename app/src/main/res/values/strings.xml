@@ -25,4 +25,8 @@
   <string name="label_observations">Observations</string>
   <string name="label_about">About</string>
   <string name="img_content_description_delete">delete</string>
+  <string name="label_delete_record">Do you really want to delete this record?</string>
+  <string name="yes">Yes</string>
+  <string name="no">No</string>
+  <string name="confirmation">Confirmation</string>
 </resources>

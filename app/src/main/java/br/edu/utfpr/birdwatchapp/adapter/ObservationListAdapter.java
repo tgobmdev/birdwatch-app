@@ -7,16 +7,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import br.edu.utfpr.birdwatchapp.R;
-import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
+import br.edu.utfpr.birdwatchapp.response.ObservationResponse;
 import java.util.List;
 import java.util.Objects;
 
 public class ObservationListAdapter extends BaseAdapter {
 
   private final Context context;
-  private final List<ObservationEntity> observations;
+  private final List<ObservationResponse> observations;
 
-  public ObservationListAdapter(Context context, List<ObservationEntity> observations) {
+  public ObservationListAdapter(Context context, List<ObservationResponse> observations) {
     this.context = context;
     this.observations = observations;
   }
@@ -52,15 +52,15 @@ public class ObservationListAdapter extends BaseAdapter {
       observationListViewHolder = (ObservationListViewHolder) view.getTag();
     }
 
-    ObservationEntity observation = observations.get(position);
-    observationListViewHolder.textViewId.setText(String.valueOf(observation.getId()));
-    observationListViewHolder.textViewDateTime.setText(String.valueOf(observation.getDateTime()));
-    observationListViewHolder.textViewLocation.setText(observation.getLocation());
-    observationListViewHolder.textViewSpecies.setText(observation.getSpecies());
+    ObservationResponse response = observations.get(position);
+    observationListViewHolder.textViewId.setText(String.valueOf(response.getId()));
+    observationListViewHolder.textViewDateTime.setText(String.valueOf(response.getDateTime()));
+    observationListViewHolder.textViewLocation.setText(response.getLocation());
+    observationListViewHolder.textViewSpecies.setText(response.getSpecie());
     return view;
   }
 
-  public void updateObservations(List<ObservationEntity> newObservations) {
+  public void updateObservations(List<ObservationResponse> newObservations) {
     this.observations.clear();
     this.observations.addAll(newObservations);
     notifyDataSetChanged();

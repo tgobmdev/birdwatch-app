@@ -6,9 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import br.edu.utfpr.birdwatchapp.R;
-import br.edu.utfpr.birdwatchapp.ui.configurable.ActionBarConfigurable;
+import br.edu.utfpr.birdwatchapp.ui.config.ActionBarConfig;
 
-public class AboutActivity extends AppCompatActivity implements ActionBarConfigurable {
+public class AboutActivity extends AppCompatActivity implements ActionBarConfig {
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {

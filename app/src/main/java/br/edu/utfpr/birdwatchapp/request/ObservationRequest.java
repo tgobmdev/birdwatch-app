@@ -6,15 +6,9 @@ public class ObservationRequest {
 
   private Date dateTime;
   private String location;
-  private String species;
+  private String specie;
 
   public ObservationRequest() {
-  }
-
-  public ObservationRequest(Date dateTime, String location, String species) {
-    this.dateTime = dateTime;
-    this.location = location;
-    this.species = species;
   }
 
   public Date getDateTime() {
@@ -33,11 +27,11 @@ public class ObservationRequest {
     this.location = location;
   }
 
-  public String getSpecies() {
-    return species;
+  public String getSpecie() {
+    return specie;
   }
 
-  public void setSpecies(String species) {
-    this.species = species;
+  public void setSpecie(String specie) {
+    this.specie = specie;
   }
 }

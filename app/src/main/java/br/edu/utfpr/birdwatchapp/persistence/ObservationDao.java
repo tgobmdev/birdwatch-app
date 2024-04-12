@@ -13,6 +13,9 @@ public interface ObservationDao {
   @Query("SELECT * FROM observations ORDER BY id ASC")
   List<ObservationEntity> findAll();
 
+  @Query("SELECT * FROM observations WHERE id = :id")
+  ObservationEntity findById(Long id);
+
   @Insert
   void save(ObservationEntity observationEntity);
 

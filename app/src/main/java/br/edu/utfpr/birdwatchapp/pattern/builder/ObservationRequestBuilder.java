@@ -25,6 +25,10 @@ public class ObservationRequestBuilder {
   }
 
   public ObservationRequest build() {
-    return new ObservationRequest(dateTime, location, specie);
+    ObservationRequest request = new ObservationRequest();
+    request.setDateTime(dateTime);
+    request.setLocation(location);
+    request.setSpecie(specie);
+    return request;
   }
 }

@@ -1,11 +1,11 @@
-package br.edu.utfpr.birdwatchapp.ui.configurable;
+package br.edu.utfpr.birdwatchapp.ui.config;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-public interface KeyboardConfigurable {
+public interface KeyboardConfig {
 
   default void hideKeyboard(View view) {
     view.setOnTouchListener((v, event) -> {

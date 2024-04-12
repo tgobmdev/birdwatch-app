@@ -1,8 +1,6 @@
 package br.edu.utfpr.birdwatchapp.activity;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,23 +12,24 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import br.edu.utfpr.birdwatchapp.R;
+import br.edu.utfpr.birdwatchapp.component.ObservationComponent;
 import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
 import br.edu.utfpr.birdwatchapp.parse.ObservationParse;
 import br.edu.utfpr.birdwatchapp.pattern.builder.ObservationRequestBuilder;
-import br.edu.utfpr.birdwatchapp.persistence.ObservationDatabase;
 import br.edu.utfpr.birdwatchapp.request.ObservationRequest;
-import br.edu.utfpr.birdwatchapp.ui.configurable.ActionBarConfigurable;
-import br.edu.utfpr.birdwatchapp.ui.configurable.KeyboardConfigurable;
+import br.edu.utfpr.birdwatchapp.ui.config.ActionBarConfig;
+import br.edu.utfpr.birdwatchapp.ui.config.KeyboardConfig;
+import br.edu.utfpr.birdwatchapp.ui.listener.DataPickerListener;
+import br.edu.utfpr.birdwatchapp.ui.listener.TimePickerListener;
 import br.edu.utfpr.birdwatchapp.util.DateUtil;
-import java.util.Calendar;
-import java.util.Locale;
 
-public class ObservationCreateActivity extends AppCompatActivity implements ActionBarConfigurable,
-    KeyboardConfigurable {
+public class ObservationCreateActivity extends AppCompatActivity implements ActionBarConfig,
+    KeyboardConfig, DataPickerListener, TimePickerListener {
 
   private EditText editTextDate, editTextTime, editTextLocation;
   private Spinner spinnerSpecie;
   private ObservationParse observationParse;
+  private ObservationComponent observationComponent;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +43,14 @@ public class ObservationCreateActivity extends AppCompatActivity implements Acti
     editTextLocation = findViewById(R.id.editTextLocation);
     spinnerSpecie = findViewById(R.id.spinnerSpecie);
     observationParse = new ObservationParse();
+    observationComponent = new ObservationComponent(this);
 
     enableHomeAsUp();
     setupSpinner();
     hideKeyboard(layoutObservation);
-    editTextDate.setOnClickListener(v -> openDatePicker());
-    editTextTime.setOnClickListener(v -> openTimePicker());
+
+    setDataPickerListener(this, editTextDate);
+    setTimePickerListener(this, editTextTime);
   }
 
   private void setupSpinner() {
@@ -57,35 +58,6 @@ public class ObservationCreateActivity extends AppCompatActivity implements Acti
         R.array.observation_species, android.R.layout.simple_spinner_item);
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     spinnerSpecie.setAdapter(adapter);
-  }
-
-  private void openDatePicker() {
-    Calendar calendar = Calendar.getInstance();
-    int year = calendar.get(Calendar.YEAR);
-    int month = calendar.get(Calendar.MONTH);
-    int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-    DatePickerDialog datePickerDialog = new DatePickerDialog(this,
-        (view, selectedYear, selectedMonth, selectedDay) -> {
-          String selectedDate = String.format(Locale.getDefault(), "%04d-%02d-%02d", selectedYear,
-              selectedMonth + 1, selectedDay);
-          editTextDate.setText(selectedDate);
-        }, year, month, day);
-    datePickerDialog.show();
-  }
-
-  private void openTimePicker() {
-    Calendar calendar = Calendar.getInstance();
-    int hour = calendar.get(Calendar.HOUR_OF_DAY);
-    int minute = calendar.get(Calendar.MINUTE);
-
-    TimePickerDialog timePickerDialog = new TimePickerDialog(this,
-        (view, selectedHour, selectedMinute) -> {
-          String selectedTime = String.format(Locale.getDefault(), "%02d:%02d", selectedHour,
-              selectedMinute);
-          editTextTime.setText(selectedTime);
-        }, hour, minute, true);
-    timePickerDialog.show();
   }
 
   private void saveObservation() {
@@ -96,11 +68,12 @@ public class ObservationCreateActivity extends AppCompatActivity implements Acti
 
     ObservationRequest observationRequest = new ObservationRequestBuilder() //
         .setDateTime(DateUtil.parseDate(date + "T" + time)) //
-        .setLocation(location).setSpecie(specie) //
+        .setLocation(location) //
+        .setSpecie(specie) //
         .build();
 
     ObservationEntity observation = observationParse.toObservationEntity(observationRequest);
-    ObservationDatabase.getObservationDatabase(this).observationDao().save(observation);
+    observationComponent.saveObservation(observation);
 
     Intent intent = new Intent();
     setResult(Activity.RESULT_OK, intent);
