@@ -4,11 +4,11 @@ import android.content.ActivityNotFoundException;
 import androidx.appcompat.app.AppCompatActivity;
 import br.edu.utfpr.birdwatchapp.pattern.strategy.ExecutorStrategy;
 
-public class FinishActivityExecutorStrategy implements ExecutorStrategy {
+public class FinishExecutorStrategy implements ExecutorStrategy {
 
   private final AppCompatActivity activity;
 
-  public FinishActivityExecutorStrategy(AppCompatActivity activity) {
+  public FinishExecutorStrategy(AppCompatActivity activity) {
     this.activity = activity;
   }
 

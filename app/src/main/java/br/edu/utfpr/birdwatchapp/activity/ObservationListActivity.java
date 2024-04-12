@@ -20,7 +20,7 @@ import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
 import br.edu.utfpr.birdwatchapp.parse.ObservationParse;
 import br.edu.utfpr.birdwatchapp.pattern.strategy.ExecutorStrategy;
 import br.edu.utfpr.birdwatchapp.pattern.strategy.ExecutorStrategyRegistry;
-import br.edu.utfpr.birdwatchapp.pattern.strategy.executor.FinishActivityExecutorStrategy;
+import br.edu.utfpr.birdwatchapp.pattern.strategy.executor.FinishExecutorStrategy;
 import br.edu.utfpr.birdwatchapp.pattern.strategy.executor.ObservationCreateExecutorStrategy;
 import br.edu.utfpr.birdwatchapp.response.ObservationResponse;
 import br.edu.utfpr.birdwatchapp.ui.config.ActionBarConfig;
@@ -103,7 +103,7 @@ public class ObservationListActivity extends AppCompatActivity implements Action
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
     ExecutorStrategyRegistry.register(R.id.menu_observation_add,
         new ObservationCreateExecutorStrategy(this, activityResultLauncher));
-    ExecutorStrategyRegistry.register(android.R.id.home, new FinishActivityExecutorStrategy(this));
+    ExecutorStrategyRegistry.register(android.R.id.home, new FinishExecutorStrategy(this));
 
     ExecutorStrategy executorStrategy = ExecutorStrategyRegistry.getExecutor(item.getItemId());
 
