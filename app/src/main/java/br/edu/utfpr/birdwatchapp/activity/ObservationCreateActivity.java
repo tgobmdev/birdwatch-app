@@ -34,7 +34,7 @@ public class ObservationCreateActivity extends AppCompatActivity implements Acti
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_observation_create);
+    setContentView(R.layout.activity_observation_form);
     setTitle(R.string.label_observations);
 
     ConstraintLayout layoutObservation = findViewById(R.id.layoutObservation);

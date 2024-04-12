@@ -25,6 +25,10 @@ public class ObservationComponent {
     observationDatabase.observationDao().save(observation);
   }
 
+  public void updateObservation(ObservationEntity observation) {
+    observationDatabase.observationDao().update(observation);
+  }
+
   public void deleteObservation(ObservationEntity observation) {
     observationDatabase.observationDao().delete(observation);
   }

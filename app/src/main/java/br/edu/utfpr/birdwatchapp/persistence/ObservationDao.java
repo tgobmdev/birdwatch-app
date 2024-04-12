@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
 import java.util.List;
 
@@ -18,6 +19,9 @@ public interface ObservationDao {
 
   @Insert
   void save(ObservationEntity observationEntity);
+
+  @Update
+  void update(ObservationEntity observationEntity);
 
   @Delete
   void delete(ObservationEntity observationEntity);

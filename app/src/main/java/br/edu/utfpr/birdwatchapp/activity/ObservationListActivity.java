@@ -7,11 +7,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.Spinner;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import br.edu.utfpr.birdwatchapp.R;
 import br.edu.utfpr.birdwatchapp.adapter.ObservationListAdapter;
@@ -25,10 +28,13 @@ import br.edu.utfpr.birdwatchapp.pattern.strategy.executor.ObservationCreateExec
 import br.edu.utfpr.birdwatchapp.response.ObservationResponse;
 import br.edu.utfpr.birdwatchapp.ui.config.ActionBarConfig;
 import br.edu.utfpr.birdwatchapp.ui.dialog.AlertDeleteDialog;
+import br.edu.utfpr.birdwatchapp.ui.listener.DataPickerListener;
+import br.edu.utfpr.birdwatchapp.ui.listener.TimePickerListener;
+import br.edu.utfpr.birdwatchapp.util.DateUtil;
 import java.util.List;
 
 public class ObservationListActivity extends AppCompatActivity implements ActionBarConfig,
-    AlertDeleteDialog {
+    AlertDeleteDialog, DataPickerListener, TimePickerListener {
 
   private List<ObservationResponse> observations;
   private ListView listViewObservations;
@@ -76,13 +82,60 @@ public class ObservationListActivity extends AppCompatActivity implements Action
   private void setupListView() {
     listViewObservations.setAdapter(observationListAdapter);
     listViewObservations.setOnItemClickListener(
-        (parent, view, position, id) -> handleItemClick(position));
+        (parent, view, position, id) -> handleItemClick(view));
   }
 
-  private void handleItemClick(int position) {
-    ObservationEntity observationEntity = observationComponent.findObservationById((long) position);
-    Toast.makeText(ObservationListActivity.this, observationEntity.toString(), Toast.LENGTH_SHORT)
-        .show();
+  private void handleItemClick(View view) {
+    int position = listViewObservations.getPositionForView(view);
+    Long id = observations.get(position).getId();
+    ObservationEntity observationEntity = observationComponent.findObservationById(id);
+
+    // Crie o diálogo
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.setTitle("Editar Observação");
+
+    // Infle o layout do formulário
+    View formView = getLayoutInflater().inflate(R.layout.activity_observation_form, null);
+    builder.setView(formView);
+
+    // Obtenha referências para os campos do formulário
+    EditText editTextDate = formView.findViewById(R.id.editTextDate);
+    EditText editTextTime = formView.findViewById(R.id.editTextTime);
+    EditText editTextLocation = formView.findViewById(R.id.editTextLocation);
+    Spinner spinnerSpecie = formView.findViewById(R.id.spinnerSpecie);
+
+    // listener para os campos data e time
+    setDataPickerListener(this, editTextDate);
+    setTimePickerListener(this, editTextTime);
+
+    // Preencha os campos com os dados da observação selecionada
+    editTextDate.setText("2000-12-22");
+    editTextTime.setText("14:30");
+    editTextLocation.setText(observationEntity.getLocation());
+
+    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+        R.array.observation_species, android.R.layout.simple_spinner_item);
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    spinnerSpecie.setAdapter(adapter);
+
+    // Configure os botões do diálogo
+    builder.setPositiveButton("Salvar", (dialog, which) -> {
+      // Atualize a observação com os novos valores
+      String dateTime = editTextDate.getText().toString() + "T" + editTextTime.getText().toString();
+      observationEntity.setDateTime(DateUtil.parseDate(dateTime));
+      observationEntity.setLocation(editTextLocation.getText().toString());
+      observationEntity.setSpecie(spinnerSpecie.getSelectedItem().toString());
+
+      observationComponent.updateObservation(observationEntity);
+
+      // Atualize a lista de observações na UI
+      updateObservations();
+    });
+
+    builder.setNegativeButton("Cancelar", null);
+
+    // Exiba o diálogo
+    builder.create().show();
   }
 
   private void updateObservations() {
