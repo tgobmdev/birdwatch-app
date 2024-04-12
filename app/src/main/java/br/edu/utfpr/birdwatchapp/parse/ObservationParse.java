@@ -24,7 +24,7 @@ public final class ObservationParse {
   public ObservationResponse toObservationResponse(ObservationEntity observationEntity) {
     return new ObservationResponseBuilder() //
         .setId(observationEntity.getId()) //
-        .setDateTime(DateUtil.formatDate(observationEntity.getDateTime())) //
+        .setDateTime(DateUtil.formatDateDefault(observationEntity.getDateTime())) //
         .setLocation(observationEntity.getLocation()) //
         .setSpecie(observationEntity.getSpecie()) //
         .build();

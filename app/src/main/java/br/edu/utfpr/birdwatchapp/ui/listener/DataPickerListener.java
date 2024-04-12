@@ -3,7 +3,10 @@ package br.edu.utfpr.birdwatchapp.ui.listener;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.widget.EditText;
+import br.edu.utfpr.birdwatchapp.util.ConstantsUtil;
+import br.edu.utfpr.birdwatchapp.util.DateUtil;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public interface DataPickerListener {
@@ -14,6 +17,16 @@ public interface DataPickerListener {
 
   default void openDatePicker(Context context, EditText field) {
     Calendar calendar = Calendar.getInstance();
+    String currentDateString = field.getText().toString();
+
+    if (!currentDateString.isEmpty()) {
+      Date existingDate = DateUtil.parseDate(currentDateString,
+          ConstantsUtil.DATE_FORMAT_YYYY_MM_DD);
+      if (existingDate != null) {
+        calendar.setTime(existingDate);
+      }
+    }
+
     int year = calendar.get(Calendar.YEAR);
     int month = calendar.get(Calendar.MONTH);
     int day = calendar.get(Calendar.DAY_OF_MONTH);

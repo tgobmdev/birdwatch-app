@@ -67,7 +67,7 @@ public class ObservationCreateActivity extends AppCompatActivity implements Acti
     String specie = spinnerSpecie.getSelectedItem().toString();
 
     ObservationRequest observationRequest = new ObservationRequestBuilder() //
-        .setDateTime(DateUtil.parseDate(date + "T" + time)) //
+        .setDateTime(DateUtil.parseDateDefault(date + "T" + time)) //
         .setLocation(location) //
         .setSpecie(specie) //
         .build();
