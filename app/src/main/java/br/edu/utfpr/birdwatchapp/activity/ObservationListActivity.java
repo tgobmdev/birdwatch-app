@@ -7,34 +7,33 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import br.edu.utfpr.birdwatchapp.R;
 import br.edu.utfpr.birdwatchapp.adapter.ObservationListViewAdapter;
 import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
-import br.edu.utfpr.birdwatchapp.observable.ObservationObservable;
 import br.edu.utfpr.birdwatchapp.persistence.ObservationDatabase;
+import br.edu.utfpr.birdwatchapp.ui.configurable.ActionBarConfigurable;
 import br.edu.utfpr.birdwatchapp.util.MessageUtil;
 import java.util.List;
 
-public class ObservationListActivity extends AppCompatActivity {
+public class ObservationListActivity extends AppCompatActivity implements ActionBarConfigurable {
 
   private List<ObservationEntity> observations;
   private ListView listViewObservations;
   private ObservationListViewAdapter observationListViewAdapter;
-  private ActivityResultLauncher<Intent> addObservationLauncher;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_observation_list);
+    setTitle(R.string.label_observations);
 
     listViewObservations = findViewById(R.id.listViewObservations);
     observations = ObservationDatabase.getObservationDatabase(this).observationDao().findAll();
     observationListViewAdapter = new ObservationListViewAdapter(this, observations);
-
+    enableHomeAsUp();
     setup();
   }
 
@@ -57,7 +56,7 @@ public class ObservationListActivity extends AppCompatActivity {
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
-    getMenuInflater().inflate(R.menu.menu_list, menu);
+    getMenuInflater().inflate(R.menu.menu_observation_list, menu);
     return true;
   }
 
@@ -65,18 +64,15 @@ public class ObservationListActivity extends AppCompatActivity {
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
     int idItem = item.getItemId();
 
-    if (idItem == R.id.menu_add) {
+    if (idItem == R.id.menu_observation_add) {
       Intent intent = new Intent(this, ObservationCreateActivity.class);
       startActivityForResult(intent, MessageUtil.REQUEST_CODE_CREATE_OBSERVATION);
       return true;
+    } else if (item.getItemId() == android.R.id.home) {
+      finish();
+      return true;
     } else {
-      if (idItem == R.id.menu_about) {
-        Intent intent = new Intent(this, AboutActivity.class);
-        startActivity(intent);
-        return true;
-      } else {
-        return super.onOptionsItemSelected(item);
-      }
+      return super.onOptionsItemSelected(item);
     }
   }
 
@@ -85,12 +81,8 @@ public class ObservationListActivity extends AppCompatActivity {
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == MessageUtil.REQUEST_CODE_CREATE_OBSERVATION
         && resultCode == Activity.RESULT_OK) {
-      if (data != null && data.hasExtra(MessageUtil.EXTRA_OBSERVATION)) {
-        ObservationEntity observation = (ObservationEntity) data.getSerializableExtra(
-            MessageUtil.EXTRA_OBSERVATION);
-        ObservationObservable.getInstance().addObservation(observation);
-        observationListViewAdapter.notifyDataSetChanged();
-      }
+      observations = ObservationDatabase.getObservationDatabase(this).observationDao().findAll();
+      observationListViewAdapter.updateObservations(observations);
     }
   }
 }

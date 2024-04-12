@@ -1,32 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">birdwatch-app</string>
+  <string name="app_name">Bird Watch</string>
   <string name="observation_date">Observation Date</string>
-  <string name="observation_form">Observation Form</string>
   <string name="observation_location">Observation Location</string>
   <string name="save">Save</string>
   <string name="clear">Clear</string>
   <string name="create_observation">Create Observation</string>
-  <string name="observation_list">Observation List</string>
-  <string name="view_observations">View Observations</string>
-  <string name="view_observation_id">ID:</string>
-  <string name="view_observation_date_and_time">Date and Time:</string>
-  <string name="view_observation_location">Location:</string>
-  <string name="view_observation_species">Species:</string>
   <string name="text_about">Example of Transition between Activities</string>
   <string name="author_name">Tiago Boaventura Miranda</string>
   <string name="logo_description">Logo UTFPR</string>
-  <string name="about">About</string>
   <string name="add">Add</string>
-  <string name="yyyy_mm_dd">YYYY-MM-DD</string>
-  <string name="hh_mm">HH:MM</string>
+  <string name="yyyy_mm_dd">yyyy-mm-dd</string>
+  <string name="hh_mm">hh:mm</string>
   <string name="menu_nav_observations">Observations</string>
   <string name="menu_nav_birds">Birds</string>
   <string name="menu_nav_about">About</string>
   <string name="open">open</string>
   <string name="close">close</string>
   <string name="label_observation_date">Date</string>
-  <string name="label_specie">Specie</string>
+  <string name="label_observation_specie">Specie</string>
   <string name="label_observation_time">Time</string>
   <string name="label_observation_location">Location</string>
+  <string name="label_observation_id">ID</string>
+  <string name="label_observations">Observations</string>
+  <string name="label_about">About</string>
 </resources>

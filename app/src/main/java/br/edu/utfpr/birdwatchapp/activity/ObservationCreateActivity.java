@@ -1,7 +1,9 @@
 package br.edu.utfpr.birdwatchapp.activity;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,6 +36,7 @@ public class ObservationCreateActivity extends AppCompatActivity implements Acti
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_observation_create);
+    setTitle(R.string.label_observations);
 
     ConstraintLayout layoutObservation = findViewById(R.id.layoutObservation);
     editTextDate = findViewById(R.id.editTextDate);
@@ -98,6 +101,10 @@ public class ObservationCreateActivity extends AppCompatActivity implements Acti
 
     ObservationEntity observation = observationParse.toObservationEntity(observationRequest);
     ObservationDatabase.getObservationDatabase(this).observationDao().save(observation);
+
+    Intent intent = new Intent();
+    setResult(Activity.RESULT_OK, intent);
+    finish();
   }
 
   private void clearForm() {

@@ -14,7 +14,7 @@ public class AboutActivity extends AppCompatActivity implements ActionBarConfigu
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_about);
-    setTitle(R.string.about);
+    setTitle(R.string.label_about);
 
     enableHomeAsUp();
   }

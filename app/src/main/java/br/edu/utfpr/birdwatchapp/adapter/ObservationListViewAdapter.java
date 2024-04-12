@@ -61,6 +61,12 @@ public class ObservationListViewAdapter extends BaseAdapter {
     return view;
   }
 
+  public void updateObservations(List<ObservationEntity> newObservations) {
+    this.observations.clear();
+    this.observations.addAll(newObservations);
+    notifyDataSetChanged();
+  }
+
   private static class ObservationListViewHolder {
 
     private TextView textViewId;
