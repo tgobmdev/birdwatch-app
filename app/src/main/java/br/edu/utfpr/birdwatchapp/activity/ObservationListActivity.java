@@ -16,7 +16,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AlertDialog.Builder;
 import androidx.appcompat.app.AppCompatActivity;
 import br.edu.utfpr.birdwatchapp.R;
-import br.edu.utfpr.birdwatchapp.adapter.ObservationListViewAdapter;
+import br.edu.utfpr.birdwatchapp.adapter.ObservationListAdapter;
 import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
 import br.edu.utfpr.birdwatchapp.persistence.ObservationDatabase;
 import br.edu.utfpr.birdwatchapp.ui.configurable.ActionBarConfigurable;
@@ -27,7 +27,7 @@ public class ObservationListActivity extends AppCompatActivity implements Action
 
   private List<ObservationEntity> observations;
   private ListView listViewObservations;
-  private ObservationListViewAdapter observationListViewAdapter;
+  private ObservationListAdapter observationListAdapter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class ObservationListActivity extends AppCompatActivity implements Action
 
     listViewObservations = findViewById(R.id.listViewObservations);
     observations = ObservationDatabase.getObservationDatabase(this).observationDao().findAll();
-    observationListViewAdapter = new ObservationListViewAdapter(this, observations);
+    observationListAdapter = new ObservationListAdapter(this, observations);
     enableHomeAsUp();
     setup();
   }
@@ -48,7 +48,7 @@ public class ObservationListActivity extends AppCompatActivity implements Action
   }
 
   private void setupObservationArrayAdapter() {
-    listViewObservations.setAdapter(observationListViewAdapter);
+    listViewObservations.setAdapter(observationListAdapter);
   }
 
   private void setupItemClickListener() {
@@ -92,7 +92,7 @@ public class ObservationListActivity extends AppCompatActivity implements Action
 
         observations = ObservationDatabase.getObservationDatabase(getApplicationContext())
             .observationDao().findAll();
-        observationListViewAdapter.updateObservations(observations);
+        observationListAdapter.updateObservations(observations);
       }
     };
     confirmarAlertTest(this, "", listener);
@@ -126,7 +126,7 @@ public class ObservationListActivity extends AppCompatActivity implements Action
     if (requestCode == MessageUtil.REQUEST_CODE_CREATE_OBSERVATION
         && resultCode == Activity.RESULT_OK) {
       observations = ObservationDatabase.getObservationDatabase(this).observationDao().findAll();
-      observationListViewAdapter.updateObservations(observations);
+      observationListAdapter.updateObservations(observations);
     }
   }
 }

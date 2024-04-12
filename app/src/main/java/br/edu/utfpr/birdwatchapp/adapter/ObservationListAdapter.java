@@ -11,12 +11,12 @@ import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
 import java.util.List;
 import java.util.Objects;
 
-public class ObservationListViewAdapter extends BaseAdapter {
+public class ObservationListAdapter extends BaseAdapter {
 
   private final Context context;
   private final List<ObservationEntity> observations;
 
-  public ObservationListViewAdapter(Context context, List<ObservationEntity> observations) {
+  public ObservationListAdapter(Context context, List<ObservationEntity> observations) {
     this.context = context;
     this.observations = observations;
   }
