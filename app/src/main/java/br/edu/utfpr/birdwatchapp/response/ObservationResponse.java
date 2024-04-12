@@ -1,11 +1,9 @@
 package br.edu.utfpr.birdwatchapp.response;
 
-import java.util.Date;
-
 public class ObservationResponse {
 
   private Long id;
-  private Date dateTime;
+  private String dateTime;
   private String location;
   private String specie;
 
@@ -20,11 +18,11 @@ public class ObservationResponse {
     this.id = id;
   }
 
-  public Date getDateTime() {
+  public String getDateTime() {
     return dateTime;
   }
 
-  public void setDateTime(Date dateTime) {
+  public void setDateTime(String dateTime) {
     this.dateTime = dateTime;
   }
 

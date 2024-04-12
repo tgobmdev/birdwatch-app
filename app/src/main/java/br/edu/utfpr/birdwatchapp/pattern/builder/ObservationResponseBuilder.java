@@ -1,12 +1,11 @@
 package br.edu.utfpr.birdwatchapp.pattern.builder;
 
 import br.edu.utfpr.birdwatchapp.response.ObservationResponse;
-import java.util.Date;
 
 public class ObservationResponseBuilder {
 
   private Long id;
-  private Date dateTime;
+  private String dateTime;
   private String location;
   private String specie;
 
@@ -15,7 +14,7 @@ public class ObservationResponseBuilder {
     return this;
   }
 
-  public ObservationResponseBuilder setDateTime(Date dateTime) {
+  public ObservationResponseBuilder setDateTime(String dateTime) {
     this.dateTime = dateTime;
     return this;
   }

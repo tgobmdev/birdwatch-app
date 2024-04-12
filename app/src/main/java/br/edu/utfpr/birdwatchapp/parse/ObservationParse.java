@@ -4,6 +4,7 @@ import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
 import br.edu.utfpr.birdwatchapp.pattern.builder.ObservationResponseBuilder;
 import br.edu.utfpr.birdwatchapp.request.ObservationRequest;
 import br.edu.utfpr.birdwatchapp.response.ObservationResponse;
+import br.edu.utfpr.birdwatchapp.util.DateUtil;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public final class ObservationParse {
   public ObservationResponse toObservationResponse(ObservationEntity observationEntity) {
     return new ObservationResponseBuilder() //
         .setId(observationEntity.getId()) //
-        .setDateTime(observationEntity.getDateTime()) //
+        .setDateTime(DateUtil.formatDate(observationEntity.getDateTime())) //
         .setLocation(observationEntity.getLocation()) //
         .setSpecie(observationEntity.getSpecie()) //
         .build();
