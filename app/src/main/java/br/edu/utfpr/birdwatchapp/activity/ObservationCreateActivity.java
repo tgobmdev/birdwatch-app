@@ -110,7 +110,7 @@ public class ObservationCreateActivity extends AppCompatActivity implements Acti
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
-    getMenuInflater().inflate(R.menu.menu_observation_create, menu);
+    getMenuInflater().inflate(R.menu.menu_save_clear, menu);
     return true;
   }
 
@@ -118,10 +118,10 @@ public class ObservationCreateActivity extends AppCompatActivity implements Acti
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
     int itemId = item.getItemId();
 
-    if (itemId == R.id.menu_observation_save) {
+    if (itemId == R.id.menu_save) {
       saveObservation();
       return true;
-    } else if (itemId == R.id.menu_observation_clear) {
+    } else if (itemId == R.id.menu_clear) {
       clearForm();
       return true;
     } else if (itemId == android.R.id.home) {

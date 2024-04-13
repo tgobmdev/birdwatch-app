@@ -61,7 +61,7 @@ public class ObservationListActivity extends AppCompatActivity implements Action
   }
 
   private void registerStrategies() {
-    ExecutorStrategyRegistry.register(R.id.menu_observation_add,
+    ExecutorStrategyRegistry.register(R.id.menu_add,
         new ObservationCreateExecutorStrategy(this, activityResultLauncher));
     ExecutorStrategyRegistry.register(android.R.id.home, new FinishExecutorStrategy(this));
   }
@@ -102,7 +102,7 @@ public class ObservationListActivity extends AppCompatActivity implements Action
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
-    getMenuInflater().inflate(R.menu.menu_observation_list, menu);
+    getMenuInflater().inflate(R.menu.menu_list, menu);
     return true;
   }
 

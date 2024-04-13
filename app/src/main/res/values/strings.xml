@@ -35,4 +35,8 @@
   <string name="error_time_required">Time is a required field.</string>
   <string name="error_location_required">Location is a required field.</string>
   <string name="error_specie_required">Specie is a required field.</string>
+  <string name="label_color">Color</string>
+  <string name="label_common_name">Common Name</string>
+  <string name="label_specie">Specie</string>
+  <string name="label_birds">Birds</string>
 </resources>
