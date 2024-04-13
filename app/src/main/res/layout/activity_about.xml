@@ -6,35 +6,23 @@
 
   <ImageView
     android:id="@+id/imageView"
-    android:layout_width="384dp"
-    android:layout_height="341dp"
+    android:layout_width="325dp"
+    android:layout_height="325dp"
     android:contentDescription="@string/logo_description"
-    app:layout_constraintBottom_toTopOf="@id/textAbout"
+    app:layout_constraintBottom_toTopOf="@id/authorName"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.5"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.5"
-    app:srcCompat="@drawable/utfpr" />
-
+    app:srcCompat="@drawable/utfpr_logo" />
 
   <TextView
     android:id="@+id/authorName"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
     android:text="@string/author_name"
+    app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.5"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/imageView" />
+    app:layout_constraintStart_toStartOf="parent" />
 
-  <TextView
-    android:id="@+id/textAbout"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/text_about"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.5"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/authorName" />
 </androidx.constraintlayout.widget.ConstraintLayout>
