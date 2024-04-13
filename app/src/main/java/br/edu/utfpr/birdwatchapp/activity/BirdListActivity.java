@@ -1,6 +1,7 @@
 package br.edu.utfpr.birdwatchapp.activity;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import br.edu.utfpr.birdwatchapp.R;
 import br.edu.utfpr.birdwatchapp.adapter.BirdListAdapter;
 import br.edu.utfpr.birdwatchapp.component.BirdComponent;
+import br.edu.utfpr.birdwatchapp.entity.BirdEntity;
 import br.edu.utfpr.birdwatchapp.parse.BirdParse;
 import br.edu.utfpr.birdwatchapp.pattern.strategy.ExecutorStrategy;
 import br.edu.utfpr.birdwatchapp.pattern.strategy.ExecutorStrategyRegistry;
@@ -81,6 +83,23 @@ public class BirdListActivity extends AppCompatActivity implements ActionBarConf
   }
 
   private void handleItemClick(View view) {
+  }
+
+  public void onDeleteClick(View view) {
+    DialogInterface.OnClickListener listener = (dialog, which) -> {
+      if (which == DialogInterface.BUTTON_POSITIVE) {
+        handleDeleteClick(view);
+      }
+    };
+    confirm(this, listener);
+  }
+
+  private void handleDeleteClick(View view) {
+    int position = listViewBirds.getPositionForView(view);
+    Long id = birds.get(position).getId();
+    BirdEntity birdEntity = birdComponent.findBirdById(id);
+    birdComponent.deleteBird(birdEntity);
+    updateBirds();
   }
 
   @Override

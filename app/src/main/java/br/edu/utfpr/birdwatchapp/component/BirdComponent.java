@@ -17,7 +17,15 @@ public class BirdComponent {
     return database.birdDao().findAll();
   }
 
-  public void saveBird(BirdEntity bird) {
-    database.birdDao().save(bird);
+  public BirdEntity findBirdById(Long id) {
+    return database.birdDao().findById(id);
+  }
+
+  public void saveBird(BirdEntity birdEntity) {
+    database.birdDao().save(birdEntity);
+  }
+
+  public void deleteBird(BirdEntity birdEntity) {
+    database.birdDao().delete(birdEntity);
   }
 }
