@@ -5,23 +5,33 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import br.edu.utfpr.birdwatchapp.R;
+import br.edu.utfpr.birdwatchapp.adapter.BirdListAdapter;
+import br.edu.utfpr.birdwatchapp.component.BirdComponent;
+import br.edu.utfpr.birdwatchapp.parse.BirdParse;
 import br.edu.utfpr.birdwatchapp.pattern.strategy.ExecutorStrategy;
 import br.edu.utfpr.birdwatchapp.pattern.strategy.ExecutorStrategyRegistry;
 import br.edu.utfpr.birdwatchapp.pattern.strategy.executor.BirdCreateExecutorStrategy;
 import br.edu.utfpr.birdwatchapp.pattern.strategy.executor.FinishExecutorStrategy;
+import br.edu.utfpr.birdwatchapp.response.BirdResponse;
 import br.edu.utfpr.birdwatchapp.ui.config.ActionBarConfig;
 import br.edu.utfpr.birdwatchapp.ui.dialog.AlertDeleteDialog;
+import java.util.List;
 
 public class BirdListActivity extends AppCompatActivity implements ActionBarConfig,
     AlertDeleteDialog {
 
+  private List<BirdResponse> birds;
   private ListView listViewBirds;
+  private BirdListAdapter birdListAdapter;
+  private BirdParse birdParse;
+  private BirdComponent birdComponent;
   private ActivityResultLauncher<Intent> activityResultLauncher;
 
   @Override
@@ -37,8 +47,17 @@ public class BirdListActivity extends AppCompatActivity implements ActionBarConf
 
   private void initializeComponents() {
     listViewBirds = findViewById(R.id.listViewBirds);
-
+    birdComponent = new BirdComponent(this);
+    birdParse = new BirdParse();
+    birds = birdParse.toResponseList(birdComponent.findAllBirds());
+    birdListAdapter = new BirdListAdapter(this, birds);
     enableHomeAsUp();
+    setupListView();
+  }
+
+  private void setupListView() {
+    listViewBirds.setAdapter(birdListAdapter);
+    listViewBirds.setOnItemClickListener((parent, view, position, id) -> handleItemClick(view));
   }
 
   private void registerStrategies() {
@@ -57,6 +76,11 @@ public class BirdListActivity extends AppCompatActivity implements ActionBarConf
   }
 
   private void updateBirds() {
+    birds = birdParse.toResponseList(birdComponent.findAllBirds());
+    birdListAdapter.updateBirds(birds);
+  }
+
+  private void handleItemClick(View view) {
   }
 
   @Override

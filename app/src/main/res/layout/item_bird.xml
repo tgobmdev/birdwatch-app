@@ -20,7 +20,7 @@
     app:layout_constraintTop_toBottomOf="@id/textViewSpecie" />
 
   <TextView
-    android:id="@+id/textViewId"
+    android:id="@+id/textViewBirdId"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:layout_marginStart="8dp"
@@ -54,7 +54,7 @@
     app:layout_constraintEnd_toStartOf="@id/iconDelete"
     app:layout_constraintHorizontal_bias="1.0"
     app:layout_constraintStart_toEndOf="@id/labelSpecie"
-    app:layout_constraintTop_toBottomOf="@id/textViewId" />
+    app:layout_constraintTop_toBottomOf="@id/textViewBirdId" />
 
   <TextView
     android:id="@+id/labelColor"

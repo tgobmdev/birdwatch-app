@@ -5,8 +5,8 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="@color/very_light_gray">
-  <EditText
-    android:id="@+id/textViewSpecie"
+  <TextView
+    android:id="@+id/textEditViewSpecie"
     android:layout_width="match_parent"
     android:layout_height="48dp"
     android:layout_marginTop="12dp"
@@ -15,12 +15,11 @@
     android:layout_marginEnd="16dp"
     android:hint="@string/label_specie"
     android:importantForAutofill="no"
-    android:inputType="text"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/textViewSpecieLabel" />
-  <EditText
-    android:id="@+id/texViewColor"
+  <TextView
+    android:id="@+id/editTextViewColor"
     android:layout_width="match_parent"
     android:layout_height="48dp"
     android:layout_marginTop="12dp"
@@ -29,12 +28,11 @@
     android:layout_marginEnd="16dp"
     android:hint="@string/label_color"
     android:importantForAutofill="no"
-    android:inputType="text"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/texViewColorLabel" />
-  <EditText
-    android:id="@+id/textViewCommonName"
+  <TextView
+    android:id="@+id/textEditViewCommonName"
     android:layout_width="match_parent"
     android:layout_height="48dp"
     android:layout_marginTop="12dp"
@@ -43,7 +41,6 @@
     android:layout_marginEnd="16dp"
     android:hint="@string/label_common_name"
     android:importantForAutofill="no"
-    android:inputType="text"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/textViewCommonNameLabel" />
@@ -70,7 +67,7 @@
     android:text="@string/label_common_name"
     android:textSize="16sp"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/texViewColor" />
+    app:layout_constraintTop_toBottomOf="@id/editTextViewColor" />
   <TextView
     android:id="@+id/texViewColorLabel"
     android:textStyle="bold"
@@ -82,5 +79,5 @@
     android:text="@string/label_color"
     android:textSize="16sp"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/textViewSpecie" />
+    app:layout_constraintTop_toBottomOf="@id/textEditViewSpecie" />
 </androidx.constraintlayout.widget.ConstraintLayout>

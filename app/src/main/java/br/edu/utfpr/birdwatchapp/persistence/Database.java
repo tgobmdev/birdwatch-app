@@ -1,25 +1,26 @@
 package br.edu.utfpr.birdwatchapp.persistence;
 
 import android.content.Context;
-import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import br.edu.utfpr.birdwatchapp.converter.DateConverter;
+import br.edu.utfpr.birdwatchapp.entity.BirdEntity;
 import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
 import java.util.Objects;
 
-@Database(entities = {ObservationEntity.class}, version = 1, exportSchema = false)
+@androidx.room.Database(entities = {ObservationEntity.class,
+    BirdEntity.class}, version = 1, exportSchema = false)
 @TypeConverters({DateConverter.class})
-public abstract class ObservationDatabase extends RoomDatabase {
+public abstract class Database extends RoomDatabase {
 
-  private static ObservationDatabase instance;
+  private static Database instance;
 
-  public static ObservationDatabase getObservationDatabase(final Context context) {
+  public static Database getDatabase(final Context context) {
     if (Objects.isNull(instance)) {
-      synchronized (ObservationDatabase.class) {
+      synchronized (Database.class) {
         if (Objects.isNull(instance)) {
-          instance = Room.databaseBuilder(context, ObservationDatabase.class, "birdwatch") //
+          instance = Room.databaseBuilder(context, Database.class, "bird.db") //
               .allowMainThreadQueries() //
               .build();
         }
@@ -29,4 +30,6 @@ public abstract class ObservationDatabase extends RoomDatabase {
   }
 
   public abstract ObservationDao observationDao();
+
+  public abstract BirdDao birdDao();
 }
