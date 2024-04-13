@@ -17,11 +17,8 @@
 
     <androidx.appcompat.widget.Toolbar
       android:id="@+id/activity_main_toolbar"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="@color/deep_purple"
-      app:title="@string/app_name"
-      app:titleTextColor="@color/white" />
+      style="@style/toolbar_main_style"
+      app:title="@string/app_name" />
   </LinearLayout>
 
   <com.google.android.material.navigation.NavigationView
