@@ -9,10 +9,13 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import br.edu.utfpr.birdwatchapp.R;
+import br.edu.utfpr.birdwatchapp.component.BirdComponent;
 import br.edu.utfpr.birdwatchapp.component.ObservationComponent;
+import br.edu.utfpr.birdwatchapp.entity.BirdEntity;
 import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
 import br.edu.utfpr.birdwatchapp.parse.ObservationParse;
 import br.edu.utfpr.birdwatchapp.pattern.builder.ObservationRequestBuilder;
@@ -23,6 +26,8 @@ import br.edu.utfpr.birdwatchapp.ui.listener.DataPickerListener;
 import br.edu.utfpr.birdwatchapp.ui.listener.TimePickerListener;
 import br.edu.utfpr.birdwatchapp.util.DateUtil;
 import br.edu.utfpr.birdwatchapp.validator.ObservationValidator;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ObservationCreateActivity extends AppCompatActivity implements ActionBarConfig,
     KeyboardConfig, DataPickerListener, TimePickerListener {
@@ -31,6 +36,7 @@ public class ObservationCreateActivity extends AppCompatActivity implements Acti
   private Spinner spinnerSpecie;
   private ObservationParse observationParse;
   private ObservationComponent observationComponent;
+  private BirdComponent birdComponent;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +59,8 @@ public class ObservationCreateActivity extends AppCompatActivity implements Acti
     observationParse = new ObservationParse();
     observationComponent = new ObservationComponent(this);
 
+    birdComponent = new BirdComponent(this);
+
     setupSpeciesSpinner();
     hideKeyboard(layoutObservation);
   }
@@ -67,8 +75,23 @@ public class ObservationCreateActivity extends AppCompatActivity implements Acti
   }
 
   private void setupSpeciesSpinner() {
-    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-        R.array.observation_species, android.R.layout.simple_spinner_item);
+    List<BirdEntity> birdEntities = birdComponent.findAllBirds();
+
+    if (birdEntities == null || birdEntities.isEmpty()) {
+      new AlertDialog.Builder(this).setTitle(R.string.notice)
+          .setMessage(R.string.warn_species_not_found)
+          .setPositiveButton(R.string.ok, (dialog, which) -> finish()).show();
+      return;
+    }
+
+    List<String> species = new ArrayList<>(birdEntities.size());
+    for (BirdEntity bird : birdEntities) {
+      species.add(bird.getSpecie());
+    }
+
+    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+        species);
+
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     spinnerSpecie.setAdapter(adapter);
   }

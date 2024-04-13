@@ -39,4 +39,7 @@
   <string name="label_common_name">Common Name</string>
   <string name="label_specie">Specie</string>
   <string name="label_birds">Birds</string>
+  <string name="ok">OK</string>
+  <string name="notice">Notice</string>
+  <string name="warn_species_not_found">No species found in the bank to create observations</string>
 </resources>
