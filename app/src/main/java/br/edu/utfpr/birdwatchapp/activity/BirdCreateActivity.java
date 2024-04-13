@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -22,7 +21,7 @@ import br.edu.utfpr.birdwatchapp.ui.config.KeyboardConfig;
 public class BirdCreateActivity extends AppCompatActivity implements ActionBarConfig,
     KeyboardConfig {
 
-  private TextView editTextViewSpecie, editTextViewColor, editTextViewCommonName;
+  private EditText editTextViewSpecie, editTextViewColor, editTextViewCommonName;
   private BirdComponent birdComponent;
   private BirdParse birdParse;
 
@@ -38,7 +37,7 @@ public class BirdCreateActivity extends AppCompatActivity implements ActionBarCo
   private void initializeComponents() {
     ConstraintLayout layoutBird = findViewById(R.id.layoutBird);
     editTextViewSpecie = findViewById(R.id.textEditViewSpecie);
-    editTextViewColor = findViewById(R.id.textViewColor);
+    editTextViewColor = findViewById(R.id.editTextViewColor);
     editTextViewCommonName = findViewById(R.id.textEditViewCommonName);
 
     birdComponent = new BirdComponent(this);
