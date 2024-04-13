@@ -3,16 +3,10 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:id="@+id/layoutBird"
   android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:background="@color/very_light_gray">
+  android:layout_height="match_parent">
   <EditText
     android:id="@+id/textEditViewSpecie"
-    android:layout_width="match_parent"
-    android:layout_height="48dp"
-    android:layout_marginTop="12dp"
-    android:layout_marginBottom="12dp"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
+    style="@style/field_style"
     android:hint="@string/label_specie"
     android:importantForAutofill="no"
     android:inputType="text"
@@ -21,12 +15,7 @@
     app:layout_constraintTop_toBottomOf="@id/textViewSpecieLabel" />
   <EditText
     android:id="@+id/editTextViewColor"
-    android:layout_width="match_parent"
-    android:layout_height="48dp"
-    android:layout_marginTop="12dp"
-    android:layout_marginBottom="12dp"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
+    style="@style/field_style"
     android:hint="@string/label_color"
     android:importantForAutofill="no"
     android:inputType="text"
@@ -35,12 +24,7 @@
     app:layout_constraintTop_toBottomOf="@id/texViewColorLabel" />
   <EditText
     android:id="@+id/textEditViewCommonName"
-    android:layout_width="match_parent"
-    android:layout_height="48dp"
-    android:layout_marginTop="12dp"
-    android:layout_marginBottom="12dp"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
+    style="@style/field_style"
     android:hint="@string/label_common_name"
     android:importantForAutofill="no"
     android:inputType="text"
@@ -49,38 +33,20 @@
     app:layout_constraintTop_toBottomOf="@id/textViewCommonNameLabel" />
   <TextView
     android:id="@+id/textViewSpecieLabel"
-    android:textStyle="bold"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="28dp"
-    android:layout_marginStart="16dp"
-    android:layout_marginLeft="16dp"
+    style="@style/label_field_style"
     android:text="@string/label_specie"
-    android:textSize="16sp"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
   <TextView
     android:id="@+id/textViewCommonNameLabel"
-    android:textStyle="bold"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="28dp"
-    android:layout_marginStart="16dp"
-    android:layout_marginLeft="16dp"
+    style="@style/label_field_style"
     android:text="@string/label_common_name"
-    android:textSize="16sp"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/editTextViewColor" />
   <TextView
     android:id="@+id/texViewColorLabel"
-    android:textStyle="bold"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="28dp"
-    android:layout_marginStart="16dp"
-    android:layout_marginLeft="16dp"
+    style="@style/label_field_style"
     android:text="@string/label_color"
-    android:textSize="16sp"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/textEditViewSpecie" />
 </androidx.constraintlayout.widget.ConstraintLayout>

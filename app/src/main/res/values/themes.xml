@@ -2,7 +2,9 @@
 
   <style name="Base.Theme.Birdwatchapp" parent="Theme.Material3.Light" />
 
-  <style name="Base.Theme.Birdwatchapp.NoActionBar" parent="Theme.Material3.DayNight.NoActionBar" />
+  <style name="Base.Theme.Birdwatchapp.NoActionBar" parent="Theme.Material3.DayNight.NoActionBar">
+    <item name="android:background">@color/very_light_gray</item>
+  </style>
 
   <style name="Theme.Birdwatchapp" parent="Base.Theme.Birdwatchapp" />
 </resources>
