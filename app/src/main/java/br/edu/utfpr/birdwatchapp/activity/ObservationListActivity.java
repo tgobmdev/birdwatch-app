@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import br.edu.utfpr.birdwatchapp.R;
 import br.edu.utfpr.birdwatchapp.adapter.ObservationListAdapter;
+import br.edu.utfpr.birdwatchapp.component.BirdComponent;
 import br.edu.utfpr.birdwatchapp.component.ObservationComponent;
 import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
 import br.edu.utfpr.birdwatchapp.parse.ObservationParse;
@@ -38,6 +39,7 @@ public class ObservationListActivity extends AppCompatActivity implements Action
   private ObservationParse observationParse;
   private ObservationComponent observationComponent;
   private ActivityResultLauncher<Intent> activityResultLauncher;
+  private BirdComponent birdComponent;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,7 @@ public class ObservationListActivity extends AppCompatActivity implements Action
   private void initializeComponents() {
     listViewObservations = findViewById(R.id.listViewObservations);
     observationComponent = new ObservationComponent(this);
+    birdComponent = new BirdComponent(this);
     observationParse = new ObservationParse();
     observations = observationParse.toResponseList(observationComponent.findAllObservations());
     observationListAdapter = new ObservationListAdapter(this, observations);
@@ -85,8 +88,9 @@ public class ObservationListActivity extends AppCompatActivity implements Action
     int position = listViewObservations.getPositionForView(view);
     Long id = observations.get(position).getId();
     ObservationEntity observationEntity = observationComponent.findObservationById(id);
+    List<String> species = birdComponent.findAllDistinctSpecies();
 
-    ObservationModal observationModal = new ObservationModal(this, observationEntity,
+    ObservationModal observationModal = new ObservationModal(this, species, observationEntity,
         updatedObservation -> {
           observationComponent.updateObservation(updatedObservation);
           updateObservations();

@@ -24,6 +24,7 @@ import br.edu.utfpr.birdwatchapp.pattern.strategy.executor.FinishExecutorStrateg
 import br.edu.utfpr.birdwatchapp.response.BirdResponse;
 import br.edu.utfpr.birdwatchapp.ui.config.ActionBarConfig;
 import br.edu.utfpr.birdwatchapp.ui.dialog.AlertDeleteDialog;
+import br.edu.utfpr.birdwatchapp.ui.modal.BirdModal;
 import java.util.List;
 
 public class BirdListActivity extends AppCompatActivity implements ActionBarConfig,
@@ -83,6 +84,16 @@ public class BirdListActivity extends AppCompatActivity implements ActionBarConf
   }
 
   private void handleItemClick(View view) {
+    int position = listViewBirds.getPositionForView(view);
+    Long id = birds.get(position).getId();
+    BirdEntity birdEntity = birdComponent.findBirdById(id);
+
+    BirdModal birdModal = new BirdModal(this, birdEntity, updatedBird -> {
+      birdComponent.updateBird(updatedBird);
+      updateBirds();
+    });
+
+    birdModal.show();
   }
 
   public void onDeleteClick(View view) {

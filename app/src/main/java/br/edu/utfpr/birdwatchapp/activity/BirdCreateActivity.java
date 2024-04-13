@@ -57,7 +57,8 @@ public class BirdCreateActivity extends AppCompatActivity implements ActionBarCo
     String color = editTextViewColor.getText().toString();
     String commonName = editTextViewCommonName.getText().toString();
 
-    BirdRequest birdRequest = new BirdRequestBuilder().setSpecie(specie) //
+    BirdRequest birdRequest = new BirdRequestBuilder() //
+        .setSpecie(specie) //
         .setColor(color) //
         .setCommonName(commonName) //
         .build();

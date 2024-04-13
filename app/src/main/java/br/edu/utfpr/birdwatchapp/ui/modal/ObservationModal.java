@@ -15,16 +15,19 @@ import br.edu.utfpr.birdwatchapp.ui.listener.DataPickerListener;
 import br.edu.utfpr.birdwatchapp.ui.listener.TimePickerListener;
 import br.edu.utfpr.birdwatchapp.util.ConstantsUtil;
 import br.edu.utfpr.birdwatchapp.util.DateUtil;
+import java.util.List;
 
 public class ObservationModal implements DataPickerListener, TimePickerListener {
 
   private final Context context;
+  private final List<String> species;
   private final ObservationEntity observation;
   private final OnSaveListener onSaveListener;
 
-  public ObservationModal(Context context, ObservationEntity observation,
+  public ObservationModal(Context context, List<String> species, ObservationEntity observation,
       OnSaveListener onSaveListener) {
     this.context = context;
+    this.species = species;
     this.observation = observation;
     this.onSaveListener = onSaveListener;
   }
@@ -97,8 +100,9 @@ public class ObservationModal implements DataPickerListener, TimePickerListener 
   }
 
   private void configureSpecieSpinner(Spinner spinnerSpecie) {
-    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,
-        R.array.observation_species, android.R.layout.simple_spinner_item);
+    ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item,
+        species);
+
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     spinnerSpecie.setAdapter(adapter);
 

@@ -15,7 +15,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import br.edu.utfpr.birdwatchapp.R;
 import br.edu.utfpr.birdwatchapp.component.BirdComponent;
 import br.edu.utfpr.birdwatchapp.component.ObservationComponent;
-import br.edu.utfpr.birdwatchapp.entity.BirdEntity;
 import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
 import br.edu.utfpr.birdwatchapp.parse.ObservationParse;
 import br.edu.utfpr.birdwatchapp.pattern.builder.ObservationRequestBuilder;
@@ -26,7 +25,6 @@ import br.edu.utfpr.birdwatchapp.ui.listener.DataPickerListener;
 import br.edu.utfpr.birdwatchapp.ui.listener.TimePickerListener;
 import br.edu.utfpr.birdwatchapp.util.DateUtil;
 import br.edu.utfpr.birdwatchapp.validator.ObservationValidator;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ObservationCreateActivity extends AppCompatActivity implements ActionBarConfig,
@@ -75,18 +73,13 @@ public class ObservationCreateActivity extends AppCompatActivity implements Acti
   }
 
   private void setupSpeciesSpinner() {
-    List<BirdEntity> birdEntities = birdComponent.findAllBirds();
+    List<String> species = birdComponent.findAllDistinctSpecies();
 
-    if (birdEntities == null || birdEntities.isEmpty()) {
+    if (species == null || species.isEmpty()) {
       new AlertDialog.Builder(this).setTitle(R.string.notice)
           .setMessage(R.string.warn_species_not_found)
           .setPositiveButton(R.string.ok, (dialog, which) -> finish()).show();
       return;
-    }
-
-    List<String> species = new ArrayList<>(birdEntities.size());
-    for (BirdEntity bird : birdEntities) {
-      species.add(bird.getSpecie());
     }
 
     ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,

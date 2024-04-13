@@ -31,6 +31,7 @@
   <string name="confirmation">Confirmation</string>
   <string name="cancel">Cancel</string>
   <string name="label_edit_observation">Edit Observation</string>
+  <string name="label_edit_bird">Edit Bird</string>
   <string name="error_date_required">Date is a required field.</string>
   <string name="error_time_required">Time is a required field.</string>
   <string name="error_location_required">Location is a required field.</string>
