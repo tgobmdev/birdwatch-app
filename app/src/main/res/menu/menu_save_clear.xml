@@ -5,9 +5,10 @@
     android:icon="@drawable/floppy_disk_solid"
     android:title="@string/save"
     app:showAsAction="ifRoom" />
+
   <item
     android:id="@+id/menu_clear"
-    android:icon="@drawable/broom_solid"
+    android:icon="@drawable/delete_left_solid"
     android:title="@string/clear"
     app:showAsAction="ifRoom" />
 </menu>
