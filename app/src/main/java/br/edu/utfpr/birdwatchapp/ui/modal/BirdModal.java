@@ -42,7 +42,7 @@ public class BirdModal {
     ViewGroup root = null;
 
     if (context instanceof Activity) {
-      root = (ViewGroup) ((Activity) context).findViewById(android.R.id.content);
+      root = ((Activity) context).findViewById(android.R.id.content);
     }
 
     View formView = inflater.inflate(R.layout.activity_bird_form, root, false);
