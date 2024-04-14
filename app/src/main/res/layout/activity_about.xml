@@ -8,7 +8,7 @@
     android:id="@+id/activity_about_logo"
     android:layout_width="325dp"
     android:layout_height="325dp"
-    android:contentDescription="@string/logo_description"
+    android:contentDescription="@string/label_utfpr_logo_description"
     app:layout_constraintBottom_toTopOf="@id/activity_about_author_name"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +20,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginBottom="16dp"
-    android:text="@string/author_name"
+    android:text="@string/label_author_name"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent" />

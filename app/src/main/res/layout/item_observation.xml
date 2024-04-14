@@ -8,7 +8,7 @@
   <ImageView
     android:id="@+id/item_observation_icon_delete"
     style="@style/item_icon_delete_style"
-    android:contentDescription="@string/img_content_description_delete"
+    android:contentDescription="@string/label_img_delete"
     android:onClick="onDeleteClick"
     android:src="@drawable/trash_solid"
     app:layout_constraintBottom_toTopOf="@id/item_location"
