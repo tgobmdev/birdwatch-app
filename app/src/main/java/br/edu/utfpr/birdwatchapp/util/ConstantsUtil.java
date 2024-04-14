@@ -6,6 +6,8 @@ public final class ConstantsUtil {
   public static final String TIME_FORMAT_HH_MM = "HH:mm";
   public static final String DATE_FORMAT_YYYY_MM_DD = "yyyy-MM-dd";
 
+  public static final String SAVE_COLOR_PREFERENCE = "save_color_preference";
+
   public static final Integer ZERO = 0;
   public static final Integer TWENTY_EIGHT = 28;
 }

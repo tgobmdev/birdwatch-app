@@ -2,6 +2,7 @@ package br.edu.utfpr.birdwatchapp.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +18,7 @@ import br.edu.utfpr.birdwatchapp.pattern.builder.request.BirdRequestBuilder;
 import br.edu.utfpr.birdwatchapp.request.BirdRequest;
 import br.edu.utfpr.birdwatchapp.ui.config.ActionBarConfig;
 import br.edu.utfpr.birdwatchapp.ui.config.KeyboardConfig;
+import br.edu.utfpr.birdwatchapp.util.ConstantsUtil;
 import br.edu.utfpr.birdwatchapp.validator.BirdValidator;
 
 public class BirdCreateActivity extends AppCompatActivity implements ActionBarConfig,
@@ -25,6 +27,7 @@ public class BirdCreateActivity extends AppCompatActivity implements ActionBarCo
   private EditText formSpecie, formColor, formCommonName;
   private BirdComponent birdComponent;
   private BirdParse birdParse;
+  private SharedPreferences sharedPreferences;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -36,46 +39,82 @@ public class BirdCreateActivity extends AppCompatActivity implements ActionBarCo
   }
 
   private void initializeComponents() {
-    ConstraintLayout layoutBird = findViewById(R.id.layout_bird);
-    formSpecie = findViewById(R.id.activity_bird_form_field_specie);
-    formColor = findViewById(R.id.activity_bird_form_field_color);
-    formCommonName = findViewById(R.id.activity_bird_form_field_common_name);
+    setupLayout();
+    initializeFields();
+    initializePreferences();
+    initializeBirdComponent();
+    configureActionBar();
+  }
 
-    birdComponent = new BirdComponent(this);
-    birdParse = new BirdParse();
-    enableHomeAsUp();
+  private void setupLayout() {
+    ConstraintLayout layoutBird = findViewById(R.id.layout_bird);
     hideKeyboard(layoutBird);
   }
 
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    getMenuInflater().inflate(R.menu.menu_save_clear, menu);
-    return true;
+  private void initializeFields() {
+    formSpecie = findViewById(R.id.activity_bird_form_field_specie);
+    formColor = findViewById(R.id.activity_bird_form_field_color);
+    formCommonName = findViewById(R.id.activity_bird_form_field_common_name);
+  }
+
+  private void initializePreferences() {
+    sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
+    boolean saveColorPreference = sharedPreferences.getBoolean(ConstantsUtil.SAVE_COLOR_PREFERENCE,
+        false);
+
+    if (saveColorPreference) {
+      String formColorPreference = sharedPreferences.getString("bird_color_preference", "");
+      formColor.setText(formColorPreference);
+    }
+  }
+
+  private void initializeBirdComponent() {
+    birdComponent = new BirdComponent(this);
+    birdParse = new BirdParse();
+  }
+
+  private void configureActionBar() {
+    enableHomeAsUp();
+  }
+
+  private boolean validateFields() {
+    BirdValidator birdValidator = new BirdValidator(this);
+    return birdValidator.validateAllFields(formSpecie, formColor, formCommonName);
   }
 
   private void saveBird() {
-    BirdValidator birdValidator = new BirdValidator(this);
-    boolean isValid = birdValidator.validateAllFields(formSpecie, formColor, formCommonName);
-
-    if (!isValid) {
-      return;
+    if (validateFields()) {
+      savePreferences();
+      saveBirdToDatabase();
+      setResultAndFinish();
     }
+  }
 
-    String specie = this.formSpecie.getText().toString();
+  private void saveBirdToDatabase() {
+    String specie = formSpecie.getText().toString();
     String color = formColor.getText().toString();
     String commonName = formCommonName.getText().toString();
 
-    BirdRequest birdRequest = new BirdRequestBuilder() //
-        .setSpecie(specie) //
-        .setColor(color) //
-        .setCommonName(commonName) //
-        .build();
+    BirdRequest birdRequest = new BirdRequestBuilder().setSpecie(specie).setColor(color)
+        .setCommonName(commonName).build();
 
     BirdEntity birdEntity = birdParse.toBirdEntity(birdRequest);
     birdComponent.saveBird(birdEntity);
+  }
 
-    Intent intent = new Intent();
-    setResult(Activity.RESULT_OK, intent);
+  private void savePreferences() {
+    boolean saveColorPreference = sharedPreferences.getBoolean(ConstantsUtil.SAVE_COLOR_PREFERENCE,
+        false);
+
+    if (saveColorPreference) {
+      SharedPreferences.Editor editor = sharedPreferences.edit();
+      editor.putString("bird_color_preference", formColor.getText().toString());
+      editor.apply();
+    }
+  }
+
+  private void setResultAndFinish() {
+    setResult(Activity.RESULT_OK, new Intent());
     finish();
   }
 
@@ -85,11 +124,31 @@ public class BirdCreateActivity extends AppCompatActivity implements ActionBarCo
     formCommonName.setText("");
   }
 
+  private void toggleSaveColorPreference(MenuItem item) {
+    boolean isChecked = !item.isChecked();
+    item.setChecked(isChecked);
+
+    SharedPreferences.Editor editor = sharedPreferences.edit();
+    editor.putBoolean(ConstantsUtil.SAVE_COLOR_PREFERENCE, isChecked);
+    editor.apply();
+  }
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.menu_save_clear, menu);
+    boolean saveCor = sharedPreferences.getBoolean(ConstantsUtil.SAVE_COLOR_PREFERENCE, false);
+    MenuItem saveColorItem = menu.findItem(R.id.menu_save_bird_color);
+    saveColorItem.setChecked(saveCor);
+    return true;
+  }
+
   @Override
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
     int itemId = item.getItemId();
-
-    if (itemId == R.id.menu_save) {
+    if (itemId == R.id.menu_save_bird_color) {
+      toggleSaveColorPreference(item);
+      return true;
+    } else if (itemId == R.id.menu_save) {
       saveBird();
       return true;
     } else if (itemId == R.id.menu_clear) {

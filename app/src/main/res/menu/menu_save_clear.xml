@@ -11,4 +11,10 @@
     android:icon="@drawable/delete_left_solid"
     android:title="@string/clear"
     app:showAsAction="ifRoom" />
+
+  <item
+    android:id="@+id/menu_save_bird_color"
+    android:checkable="true"
+    android:title="@string/label_save_bird_color"
+    app:showAsAction="never" />
 </menu>

@@ -38,4 +38,5 @@
   <string name="close">close</string>
   <string name="error_common_name_required">Nome comum é um campo obrigatório.</string>
   <string name="error_color_required">A cor é um campo obrigatório.</string>
+  <string name="label_save_bird_color">Salvar cor da Ave</string>
 </resources>

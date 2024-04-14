@@ -132,13 +132,18 @@ public class ObservationCreateActivity extends AppCompatActivity implements Acti
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.menu_save_clear, menu);
+    hideMenuSaveBirdColor(menu);
     return true;
+  }
+
+  private static void hideMenuSaveBirdColor(Menu menu) {
+    MenuItem menuSaveColor = menu.findItem(R.id.menu_save_bird_color);
+    menuSaveColor.setVisible(false);
   }
 
   @Override
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
     int itemId = item.getItemId();
-
     if (itemId == R.id.menu_save) {
       saveObservation();
       return true;
