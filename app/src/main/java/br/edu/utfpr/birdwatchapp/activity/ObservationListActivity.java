@@ -17,7 +17,6 @@ import br.edu.utfpr.birdwatchapp.adapter.ObservationListAdapter;
 import br.edu.utfpr.birdwatchapp.component.BirdComponent;
 import br.edu.utfpr.birdwatchapp.component.ObservationComponent;
 import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
-import br.edu.utfpr.birdwatchapp.parse.ObservationParse;
 import br.edu.utfpr.birdwatchapp.pattern.strategy.ExecutorStrategy;
 import br.edu.utfpr.birdwatchapp.pattern.strategy.ExecutorStrategyRegistry;
 import br.edu.utfpr.birdwatchapp.pattern.strategy.executor.FinishExecutorStrategy;
@@ -36,7 +35,6 @@ public class ObservationListActivity extends AppCompatActivity implements Action
   private List<ObservationResponse> observations;
   private ListView listViewObservations;
   private ObservationListAdapter observationListAdapter;
-  private ObservationParse observationParse;
   private ObservationComponent observationComponent;
   private ActivityResultLauncher<Intent> activityResultLauncher;
   private BirdComponent birdComponent;
@@ -56,8 +54,7 @@ public class ObservationListActivity extends AppCompatActivity implements Action
     listViewObservations = findViewById(R.id.activity_observation_list_view);
     observationComponent = new ObservationComponent(this);
     birdComponent = new BirdComponent(this);
-    observationParse = new ObservationParse();
-    observations = observationParse.toResponseList(observationComponent.findAllObservations());
+    observations = observationComponent.findAllObservations();
     observationListAdapter = new ObservationListAdapter(this, observations);
     enableHomeAsUp();
     setupListView();
@@ -100,7 +97,7 @@ public class ObservationListActivity extends AppCompatActivity implements Action
   }
 
   private void updateObservations() {
-    observations = observationParse.toResponseList(observationComponent.findAllObservations());
+    observations = observationComponent.findAllObservations();
     observationListAdapter.updateObservations(observations);
   }
 

@@ -3,6 +3,7 @@ package br.edu.utfpr.birdwatchapp.component;
 import android.content.Context;
 import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
 import br.edu.utfpr.birdwatchapp.persistence.Database;
+import br.edu.utfpr.birdwatchapp.response.ObservationResponse;
 import java.util.List;
 
 public class ObservationComponent {
@@ -13,8 +14,8 @@ public class ObservationComponent {
     this.database = Database.getDatabase(context);
   }
 
-  public List<ObservationEntity> findAllObservations() {
-    return database.observationDao().findAll();
+  public List<ObservationResponse> findAllObservations() {
+    return database.observationResponseDao().findAllObservationResponses();
   }
 
   public ObservationEntity findObservationById(Long id) {

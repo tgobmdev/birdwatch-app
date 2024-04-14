@@ -1,24 +1,26 @@
 package br.edu.utfpr.birdwatchapp.entity;
 
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 import java.io.Serializable;
 import java.util.Date;
 
-@Entity(tableName = "observations")
+@Entity(tableName = "observations", foreignKeys = @ForeignKey(entity = BirdEntity.class, parentColumns = "id", childColumns = "birdId", onDelete = ForeignKey.CASCADE))
 public class ObservationEntity implements Serializable {
 
   @PrimaryKey(autoGenerate = true)
-  private long id;
+  private Long id;
   private Date dateTime;
   private String location;
-  private String specie;
 
-  public long getId() {
+  private Long birdId;
+
+  public Long getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -38,11 +40,11 @@ public class ObservationEntity implements Serializable {
     this.location = location;
   }
 
-  public String getSpecie() {
-    return specie;
+  public Long getBirdId() {
+    return birdId;
   }
 
-  public void setSpecie(String specie) {
-    this.specie = specie;
+  public void setBirdId(Long birdId) {
+    this.birdId = birdId;
   }
 }

@@ -2,6 +2,8 @@ package br.edu.utfpr.birdwatchapp.entity;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.Relation;
+import java.util.List;
 
 @Entity(tableName = "birds")
 public class BirdEntity {
@@ -11,6 +13,9 @@ public class BirdEntity {
   private String specie;
   private String color;
   private String commonName;
+
+  @Relation(parentColumn = "id", entityColumn = "birdId")
+  private List<ObservationEntity> observations;
 
   public long getId() {
     return id;
@@ -42,5 +47,13 @@ public class BirdEntity {
 
   public void setCommonName(String commonName) {
     this.commonName = commonName;
+  }
+
+  public List<ObservationEntity> getObservations() {
+    return observations;
+  }
+
+  public void setObservations(List<ObservationEntity> observations) {
+    this.observations = observations;
   }
 }

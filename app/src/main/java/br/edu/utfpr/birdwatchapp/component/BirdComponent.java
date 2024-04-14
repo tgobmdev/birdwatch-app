@@ -21,6 +21,10 @@ public class BirdComponent {
     return database.birdDao().findById(id);
   }
 
+  public BirdEntity findBirdBySpecie(String specie) {
+    return database.birdDao().findBirdBySpecie(specie);
+  }
+
   public List<String> findAllDistinctSpecies() {
     return database.birdDao().findAllDistinctSpecies();
   }

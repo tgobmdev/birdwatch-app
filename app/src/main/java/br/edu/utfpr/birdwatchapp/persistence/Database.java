@@ -32,4 +32,6 @@ public abstract class Database extends RoomDatabase {
   public abstract ObservationDao observationDao();
 
   public abstract BirdDao birdDao();
+
+  public abstract ObservationResponseDao observationResponseDao();
 }

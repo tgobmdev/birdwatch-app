@@ -15,6 +15,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import br.edu.utfpr.birdwatchapp.R;
 import br.edu.utfpr.birdwatchapp.component.BirdComponent;
 import br.edu.utfpr.birdwatchapp.component.ObservationComponent;
+import br.edu.utfpr.birdwatchapp.entity.BirdEntity;
 import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
 import br.edu.utfpr.birdwatchapp.parse.ObservationParse;
 import br.edu.utfpr.birdwatchapp.pattern.builder.request.ObservationRequestBuilder;
@@ -105,10 +106,12 @@ public class ObservationCreateActivity extends AppCompatActivity implements Acti
     String location = formLocation.getText().toString();
     String specie = formSpecie.getSelectedItem().toString();
 
+    BirdEntity bird = birdComponent.findBirdBySpecie(specie);
+
     ObservationRequest observationRequest = new ObservationRequestBuilder().setDateTime(
             DateUtil.parseDateDefault(date + "T" + time)) //
         .setLocation(location) //
-        .setSpecie(specie) //
+        .setBirdId(bird.getId()) //
         .build();
 
     ObservationEntity observationEntity = observationParse.toObservationEntity(observationRequest);

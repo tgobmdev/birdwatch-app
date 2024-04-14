@@ -7,7 +7,7 @@ public class ObservationRequestBuilder {
 
   private Date dateTime;
   private String location;
-  private String specie;
+  private Long birdId;
 
   public ObservationRequestBuilder setDateTime(Date dateTime) {
     this.dateTime = dateTime;
@@ -19,8 +19,8 @@ public class ObservationRequestBuilder {
     return this;
   }
 
-  public ObservationRequestBuilder setSpecie(String specie) {
-    this.specie = specie;
+  public ObservationRequestBuilder setBirdId(Long birdId) {
+    this.birdId = birdId;
     return this;
   }
 
@@ -28,7 +28,7 @@ public class ObservationRequestBuilder {
     ObservationRequest request = new ObservationRequest();
     request.setDateTime(dateTime);
     request.setLocation(location);
-    request.setSpecie(specie);
+    request.setBirdId(birdId);
     return request;
   }
 }

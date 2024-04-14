@@ -6,7 +6,7 @@ public class ObservationRequest {
 
   private Date dateTime;
   private String location;
-  private String specie;
+  private Long birdId;
 
   public ObservationRequest() {
   }
@@ -27,11 +27,11 @@ public class ObservationRequest {
     this.location = location;
   }
 
-  public String getSpecie() {
-    return specie;
+  public Long getBirdId() {
+    return birdId;
   }
 
-  public void setSpecie(String specie) {
-    this.specie = specie;
+  public void setBirdId(Long birdId) {
+    this.birdId = birdId;
   }
 }

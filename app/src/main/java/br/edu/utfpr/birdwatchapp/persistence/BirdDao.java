@@ -17,6 +17,9 @@ public interface BirdDao {
   @Query("SELECT * FROM birds WHERE id = :id")
   BirdEntity findById(Long id);
 
+  @Query("SELECT * FROM birds WHERE specie = :specie")
+  BirdEntity findBirdBySpecie(String specie);
+
   @Query("SELECT DISTINCT specie FROM birds")
   List<String> findAllDistinctSpecies();
 
