@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">Bird Observation Record</string>
+  <string name="app_name">Bird Observations</string>
   <string name="error_date_required">Date is a required field.</string>
   <string name="error_time_required">Time is a required field.</string>
   <string name="error_location_required">Location is a required field.</string>

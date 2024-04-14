@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">Registro de Observação de Aves</string>
+  <string name="app_name">Observações de Aves</string>
   <string name="error_date_required">Data é um campo obrigatório.</string>
   <string name="error_time_required">O tempo é um campo obrigatório.</string>
   <string name="error_location_required">A localização é um campo obrigatório.</string>
