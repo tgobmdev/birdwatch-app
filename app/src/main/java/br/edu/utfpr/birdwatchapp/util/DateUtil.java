@@ -27,8 +27,4 @@ public class DateUtil {
     SimpleDateFormat sdf = new SimpleDateFormat(pattern, Locale.getDefault());
     return sdf.format(date);
   }
-
-  public static String formatDateDefault(Date date) {
-    return formatDate(date, ConstantsUtil.DATE_FORMAT_DEFAULT);
-  }
 }

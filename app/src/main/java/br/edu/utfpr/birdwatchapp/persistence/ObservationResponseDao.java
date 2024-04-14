@@ -8,6 +8,11 @@ import java.util.List;
 @Dao
 public interface ObservationResponseDao {
 
-  @Query("SELECT o.id, o.dateTime, o.location, b.specie FROM observations o JOIN birds b ON o.birdId = b.id")
+  @Query("SELECT o.id, "
+      + "strftime('%Y-%m-%dT%H:%M', o.dateTime / 1000, 'unixepoch') as dateTime, "
+      + "o.location, "
+      + "b.specie "
+      + "FROM observations "
+      + "o JOIN birds b ON o.birdId = b.id")
   List<ObservationResponse> findAllObservationResponses();
 }

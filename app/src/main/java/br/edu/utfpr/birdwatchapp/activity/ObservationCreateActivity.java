@@ -108,8 +108,8 @@ public class ObservationCreateActivity extends AppCompatActivity implements Acti
 
     BirdEntity bird = birdComponent.findBirdBySpecie(specie);
 
-    ObservationRequest observationRequest = new ObservationRequestBuilder().setDateTime(
-            DateUtil.parseDateDefault(date + "T" + time)) //
+    ObservationRequest observationRequest = new ObservationRequestBuilder() //
+        .setDateTime(DateUtil.parseDateDefault(date + "T" + time)) //
         .setLocation(location) //
         .setBirdId(bird.getId()) //
         .build();

@@ -54,6 +54,7 @@ public class ObservationListActivity extends AppCompatActivity implements Action
     listViewObservations = findViewById(R.id.activity_observation_list_view);
     observationComponent = new ObservationComponent(this);
     birdComponent = new BirdComponent(this);
+
     observations = observationComponent.findAllObservations();
     observationListAdapter = new ObservationListAdapter(this, observations);
     enableHomeAsUp();
