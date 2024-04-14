@@ -62,11 +62,11 @@ public class BirdModal {
   }
 
   private void setupFormFields(View formView) {
-    EditText textEditViewSpecie = formView.findViewById(R.id.textEditViewSpecie);
-    EditText editTextViewColor = formView.findViewById(R.id.editTextViewColor);
-    EditText textEditViewCommonName = formView.findViewById(R.id.textEditViewCommonName);
+    EditText textEditSpecie = formView.findViewById(R.id.activity_bird_form_field_specie);
+    EditText editTextColor = formView.findViewById(R.id.activity_bird_form_field_color);
+    EditText textEditCommonName = formView.findViewById(R.id.activity_bird_form_field_common_name);
 
-    initializeFormFields(textEditViewSpecie, editTextViewColor, textEditViewCommonName);
+    initializeFormFields(textEditSpecie, editTextColor, textEditCommonName);
   }
 
   private void initializeFormFields(EditText textEditViewSpecie, EditText editTextViewColor,
@@ -82,13 +82,13 @@ public class BirdModal {
   }
 
   private void saveBird(View formView) {
-    EditText textEditViewSpecie = formView.findViewById(R.id.textEditViewSpecie);
-    EditText editTextViewColor = formView.findViewById(R.id.editTextViewColor);
-    EditText textEditViewCommonName = formView.findViewById(R.id.textEditViewCommonName);
+    EditText textEditSpecie = formView.findViewById(R.id.activity_bird_form_field_specie);
+    EditText editTextColor = formView.findViewById(R.id.activity_bird_form_field_color);
+    EditText textEditCommonName = formView.findViewById(R.id.activity_bird_form_field_common_name);
 
-    bird.setSpecie(textEditViewSpecie.getText().toString());
-    bird.setColor(editTextViewColor.getText().toString());
-    bird.setCommonName(textEditViewCommonName.getText().toString());
+    bird.setSpecie(textEditSpecie.getText().toString());
+    bird.setColor(editTextColor.getText().toString());
+    bird.setCommonName(textEditCommonName.getText().toString());
 
     if (onSaveListener != null) {
       onSaveListener.onSave(bird);

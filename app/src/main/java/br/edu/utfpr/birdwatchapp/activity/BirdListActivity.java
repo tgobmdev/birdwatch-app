@@ -49,7 +49,7 @@ public class BirdListActivity extends AppCompatActivity implements ActionBarConf
   }
 
   private void initializeComponents() {
-    listViewBirds = findViewById(R.id.listViewBirds);
+    listViewBirds = findViewById(R.id.activity_bird_list_view);
     birdComponent = new BirdComponent(this);
     birdParse = new BirdParse();
     birds = birdParse.toResponseList(birdComponent.findAllBirds());

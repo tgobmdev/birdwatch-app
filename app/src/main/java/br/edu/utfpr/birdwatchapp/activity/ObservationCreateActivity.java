@@ -50,7 +50,7 @@ public class ObservationCreateActivity extends AppCompatActivity implements Acti
   }
 
   private void initializeComponents() {
-    ConstraintLayout layoutObservation = findViewById(R.id.layoutObservation);
+    ConstraintLayout layoutObservation = findViewById(R.id.layout_observation);
     formDate = findViewById(R.id.activity_observation_form_field_date);
     formTime = findViewById(R.id.activity_observation_form_field_time);
     formLocation = findViewById(R.id.activity_observation_form_field_location);
