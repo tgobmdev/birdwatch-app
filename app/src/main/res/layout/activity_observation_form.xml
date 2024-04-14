@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/layout_observation"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <EditText
+    android:id="@+id/activity_observation_form_field_date"
+    style="@style/field_style"
+    android:focusable="false"
+    android:focusableInTouchMode="true"
+    android:hint="@string/yyyy_mm_dd"
+    android:importantForAutofill="no"
+    android:inputType="date"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/activity_observation_form_label_field_date" />
+  <EditText
+    android:id="@+id/activity_observation_form_field_time"
+    style="@style/field_style"
+    android:focusable="false"
+    android:focusableInTouchMode="true"
+    android:hint="@string/hh_mm"
+    android:importantForAutofill="no"
+    android:inputType="time"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/activity_observation_form_label_field_time" />
+  <EditText
+    android:id="@+id/activity_observation_form_field_location"
+    style="@style/field_style"
+    android:hint="@string/label_observation_location"
+    android:importantForAutofill="no"
+    android:inputType="text"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/activity_observation_form_label_field_location" />
+  <Spinner
+    android:id="@+id/activity_observation_form_field_specie"
+    style="@style/field_style"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/activity_observation_form_label_field_specie" />
+  <TextView
+    android:id="@+id/activity_observation_form_label_field_location"
+    style="@style/label_field_style"
+    android:text="@string/label_observation_location"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/activity_observation_form_field_time" />
+  <TextView
+    android:id="@+id/activity_observation_form_label_field_time"
+    style="@style/label_field_style"
+    android:text="@string/label_observation_time"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/activity_observation_form_field_date" />
+  <TextView
+    android:id="@+id/activity_observation_form_label_field_specie"
+    style="@style/label_field_style"
+    android:text="@string/label_observation_specie"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/activity_observation_form_field_location" />
+  <TextView
+    android:id="@+id/activity_observation_form_label_field_date"
+    style="@style/label_field_style"
+    android:text="@string/label_observation_date"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
