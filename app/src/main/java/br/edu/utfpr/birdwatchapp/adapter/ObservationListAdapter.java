@@ -43,10 +43,10 @@ public class ObservationListAdapter extends BaseAdapter {
     if (Objects.isNull(view)) {
       view = LayoutInflater.from(context).inflate(R.layout.item_observation, parent, false);
       observationListViewHolder = new ObservationListViewHolder();
-      observationListViewHolder.observationId = view.findViewById(R.id.textViewId);
-      observationListViewHolder.date = view.findViewById(R.id.textViewDateTime);
-      observationListViewHolder.location = view.findViewById(R.id.textViewLocation);
-      observationListViewHolder.specie = view.findViewById(R.id.textViewSpecies);
+      observationListViewHolder.observationId = view.findViewById(R.id.item_observation_id);
+      observationListViewHolder.date = view.findViewById(R.id.item_date_time);
+      observationListViewHolder.location = view.findViewById(R.id.item_location);
+      observationListViewHolder.specie = view.findViewById(R.id.item_observation_specie);
       view.setTag(observationListViewHolder);
     } else {
       observationListViewHolder = (ObservationListViewHolder) view.getTag();

@@ -7,7 +7,7 @@
   android:animateLayoutChanges="true">
 
   <ListView
-    android:id="@+id/listViewObservations"
+    android:id="@+id/activity_observation_list_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:divider="@android:color/darker_gray"

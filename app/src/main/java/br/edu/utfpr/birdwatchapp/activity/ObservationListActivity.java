@@ -53,7 +53,7 @@ public class ObservationListActivity extends AppCompatActivity implements Action
   }
 
   private void initializeComponents() {
-    listViewObservations = findViewById(R.id.listViewObservations);
+    listViewObservations = findViewById(R.id.activity_observation_list_view);
     observationComponent = new ObservationComponent(this);
     birdComponent = new BirdComponent(this);
     observationParse = new ObservationParse();
