@@ -85,9 +85,8 @@ public class ObservationListActivity extends AppCompatActivity implements Action
     int position = listViewObservations.getPositionForView(view);
     Long id = observations.get(position).getId();
     ObservationEntity observationEntity = observationComponent.findObservationById(id);
-    List<String> species = birdComponent.findAllDistinctSpecies();
 
-    ObservationModal observationModal = new ObservationModal(this, species, observationEntity,
+    ObservationModal observationModal = new ObservationModal(this, birdComponent, observationEntity,
         updatedObservation -> {
           observationComponent.updateObservation(updatedObservation);
           updateObservations();

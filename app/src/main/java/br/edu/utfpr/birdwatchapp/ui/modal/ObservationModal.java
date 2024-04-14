@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import androidx.appcompat.app.AlertDialog;
 import br.edu.utfpr.birdwatchapp.R;
+import br.edu.utfpr.birdwatchapp.component.BirdComponent;
+import br.edu.utfpr.birdwatchapp.entity.BirdEntity;
 import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
 import br.edu.utfpr.birdwatchapp.ui.listener.DataPickerListener;
 import br.edu.utfpr.birdwatchapp.ui.listener.TimePickerListener;
@@ -20,14 +22,14 @@ import java.util.List;
 public class ObservationModal implements DataPickerListener, TimePickerListener {
 
   private final Context context;
-  private final List<String> species;
+  private final BirdComponent birdComponent;
   private final ObservationEntity observation;
   private final OnSaveListener onSaveListener;
 
-  public ObservationModal(Context context, List<String> species, ObservationEntity observation,
-      OnSaveListener onSaveListener) {
+  public ObservationModal(Context context, BirdComponent birdComponent,
+      ObservationEntity observation, OnSaveListener onSaveListener) {
     this.context = context;
-    this.species = species;
+    this.birdComponent = birdComponent;
     this.observation = observation;
     this.onSaveListener = onSaveListener;
   }
@@ -101,14 +103,16 @@ public class ObservationModal implements DataPickerListener, TimePickerListener 
   }
 
   private void configureSpecieSpinner(Spinner spinnerSpecie) {
+    List<String> species = birdComponent.findAllDistinctSpecies();
     ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item,
         species);
 
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     spinnerSpecie.setAdapter(adapter);
 
-    if (observation.getSpecie() != null) {
-      int position = adapter.getPosition(observation.getSpecie());
+    if (observation.getBirdId() != null) {
+      BirdEntity bird = birdComponent.findBirdById(observation.getBirdId());
+      int position = adapter.getPosition(bird.getSpecie());
       if (position >= ConstantsUtil.ZERO) {
         spinnerSpecie.setSelection(position);
       }
@@ -130,7 +134,9 @@ public class ObservationModal implements DataPickerListener, TimePickerListener 
     String dateTime = editTextDate.getText().toString() + "T" + editTextTime.getText().toString();
     observation.setDateTime(DateUtil.parseDateDefault(dateTime));
     observation.setLocation(editTextLocation.getText().toString());
-    observation.setSpecie(spinnerSpecie.getSelectedItem().toString());
+
+    BirdEntity bird = birdComponent.findBirdBySpecie(spinnerSpecie.getSelectedItem().toString());
+    observation.setBirdId(bird.getId());
 
     if (onSaveListener != null) {
       onSaveListener.onSave(observation);

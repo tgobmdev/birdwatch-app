@@ -18,6 +18,7 @@ public abstract class Database extends RoomDatabase {
 
   public static Database getDatabase(final Context context) {
     if (Objects.isNull(instance)) {
+      context.deleteDatabase("bird.db");
       synchronized (Database.class) {
         if (Objects.isNull(instance)) {
           instance = Room.databaseBuilder(context, Database.class, "bird.db") //
