@@ -5,18 +5,18 @@
   android:layout_height="match_parent">
 
   <ImageView
-    android:id="@+id/imageView"
+    android:id="@+id/activity_about_logo"
     android:layout_width="325dp"
     android:layout_height="325dp"
     android:contentDescription="@string/logo_description"
-    app:layout_constraintBottom_toTopOf="@id/authorName"
+    app:layout_constraintBottom_toTopOf="@id/activity_about_author_name"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     app:srcCompat="@drawable/utfpr_logo" />
 
   <TextView
-    android:id="@+id/authorName"
+    android:id="@+id/activity_about_author_name"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginBottom="16dp"
