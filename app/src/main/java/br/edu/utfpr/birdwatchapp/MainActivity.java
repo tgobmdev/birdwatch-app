@@ -57,10 +57,10 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void registerStrategies() {
-    ExecutorStrategyRegistry.register(R.id.menu_nav_observation,
+    ExecutorStrategyRegistry.register(R.id.label_observation,
         new ObservationExecutorStrategy(this));
-    ExecutorStrategyRegistry.register(R.id.menu_nav_bird, new BirdExecutorStrategy(this));
-    ExecutorStrategyRegistry.register(R.id.menu_nav_about, new AboutExecutorStrategy(this));
+    ExecutorStrategyRegistry.register(R.id.label_bird, new BirdExecutorStrategy(this));
+    ExecutorStrategyRegistry.register(R.id.label_about, new AboutExecutorStrategy(this));
   }
 
   private void closeDrawer() {
