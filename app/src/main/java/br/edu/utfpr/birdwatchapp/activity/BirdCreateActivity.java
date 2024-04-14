@@ -17,6 +17,7 @@ import br.edu.utfpr.birdwatchapp.pattern.builder.request.BirdRequestBuilder;
 import br.edu.utfpr.birdwatchapp.request.BirdRequest;
 import br.edu.utfpr.birdwatchapp.ui.config.ActionBarConfig;
 import br.edu.utfpr.birdwatchapp.ui.config.KeyboardConfig;
+import br.edu.utfpr.birdwatchapp.validator.BirdValidator;
 
 public class BirdCreateActivity extends AppCompatActivity implements ActionBarConfig,
     KeyboardConfig {
@@ -53,6 +54,13 @@ public class BirdCreateActivity extends AppCompatActivity implements ActionBarCo
   }
 
   private void saveBird() {
+    BirdValidator birdValidator = new BirdValidator(this);
+    boolean isValid = birdValidator.validateAllFields(formSpecie, formColor, formCommonName);
+
+    if (!isValid) {
+      return;
+    }
+
     String specie = this.formSpecie.getText().toString();
     String color = formColor.getText().toString();
     String commonName = formCommonName.getText().toString();

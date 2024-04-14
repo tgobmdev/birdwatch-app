@@ -36,4 +36,6 @@
   <string name="warn_species_not_found">Nenhuma espécie encontrada no banco para criar observações</string>
   <string name="open">open</string>
   <string name="close">close</string>
+  <string name="error_common_name_required">Nome comum é um campo obrigatório.</string>
+  <string name="error_color_required">A cor é um campo obrigatório.</string>
 </resources>

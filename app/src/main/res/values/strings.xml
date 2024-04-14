@@ -36,4 +36,6 @@
   <string name="label_author_name">Tiago Boaventura Miranda</string>
   <string name="label_img_delete">delete</string>
   <string name="warn_species_not_found">No species found in the bank to create observations</string>
+  <string name="error_color_required">Color is a required field.</string>
+  <string name="error_common_name_required">Common Name is a required field.</string>
 </resources>
