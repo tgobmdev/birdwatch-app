@@ -30,9 +30,11 @@ import java.util.List;
 public class ObservationCreateActivity extends AppCompatActivity implements ActionBarConfig,
     KeyboardConfig, DataPickerListener, TimePickerListener {
 
-  private EditText editTextDate, editTextTime, editTextLocation;
-  private Spinner spinnerSpecie;
+  private EditText formDate, formTime, formLocation;
+  private Spinner formSpecie;
+
   private ObservationParse observationParse;
+
   private ObservationComponent observationComponent;
   private BirdComponent birdComponent;
 
@@ -49,14 +51,14 @@ public class ObservationCreateActivity extends AppCompatActivity implements Acti
 
   private void initializeComponents() {
     ConstraintLayout layoutObservation = findViewById(R.id.layoutObservation);
-    editTextDate = findViewById(R.id.editTextDate);
-    editTextTime = findViewById(R.id.editTextTime);
-    editTextLocation = findViewById(R.id.editTextLocation);
-    spinnerSpecie = findViewById(R.id.spinnerSpecie);
+    formDate = findViewById(R.id.activity_observation_form_field_date);
+    formTime = findViewById(R.id.activity_observation_form_field_time);
+    formLocation = findViewById(R.id.activity_observation_form_field_location);
+    formSpecie = findViewById(R.id.activity_observation_form_field_specie);
 
     observationParse = new ObservationParse();
-    observationComponent = new ObservationComponent(this);
 
+    observationComponent = new ObservationComponent(this);
     birdComponent = new BirdComponent(this);
 
     setupSpeciesSpinner();
@@ -68,8 +70,8 @@ public class ObservationCreateActivity extends AppCompatActivity implements Acti
   }
 
   private void configureListeners() {
-    setDataPickerListener(this, editTextDate);
-    setTimePickerListener(this, editTextTime);
+    setDataPickerListener(this, formDate);
+    setTimePickerListener(this, formTime);
   }
 
   private void setupSpeciesSpinner() {
@@ -86,22 +88,22 @@ public class ObservationCreateActivity extends AppCompatActivity implements Acti
         species);
 
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    spinnerSpecie.setAdapter(adapter);
+    formSpecie.setAdapter(adapter);
   }
 
   private void saveObservation() {
     ObservationValidator observationValidator = new ObservationValidator(this);
-    boolean isValid = observationValidator.validateAllFields(editTextDate, editTextTime,
-        editTextLocation, spinnerSpecie);
+    boolean isValid = observationValidator.validateAllFields(formDate, formTime, formLocation,
+        formSpecie);
 
     if (!isValid) {
       return;
     }
 
-    String date = editTextDate.getText().toString();
-    String time = editTextTime.getText().toString();
-    String location = editTextLocation.getText().toString();
-    String specie = spinnerSpecie.getSelectedItem().toString();
+    String date = formDate.getText().toString();
+    String time = formTime.getText().toString();
+    String location = formLocation.getText().toString();
+    String specie = formSpecie.getSelectedItem().toString();
 
     ObservationRequest observationRequest = new ObservationRequestBuilder().setDateTime(
             DateUtil.parseDateDefault(date + "T" + time)) //
@@ -118,10 +120,10 @@ public class ObservationCreateActivity extends AppCompatActivity implements Acti
   }
 
   private void clearForm() {
-    editTextDate.setText("");
-    editTextTime.setText("");
-    editTextLocation.setText("");
-    spinnerSpecie.setSelection(0);
+    formDate.setText("");
+    formTime.setText("");
+    formLocation.setText("");
+    formSpecie.setSelection(0);
   }
 
   @Override

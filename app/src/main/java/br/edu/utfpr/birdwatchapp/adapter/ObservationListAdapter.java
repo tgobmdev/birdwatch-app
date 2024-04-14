@@ -43,20 +43,20 @@ public class ObservationListAdapter extends BaseAdapter {
     if (Objects.isNull(view)) {
       view = LayoutInflater.from(context).inflate(R.layout.item_observation, parent, false);
       observationListViewHolder = new ObservationListViewHolder();
-      observationListViewHolder.textViewId = view.findViewById(R.id.textViewId);
-      observationListViewHolder.textViewDateTime = view.findViewById(R.id.textViewDateTime);
-      observationListViewHolder.textViewLocation = view.findViewById(R.id.textViewLocation);
-      observationListViewHolder.textViewSpecies = view.findViewById(R.id.textViewSpecies);
+      observationListViewHolder.observationId = view.findViewById(R.id.textViewId);
+      observationListViewHolder.date = view.findViewById(R.id.textViewDateTime);
+      observationListViewHolder.location = view.findViewById(R.id.textViewLocation);
+      observationListViewHolder.specie = view.findViewById(R.id.textViewSpecies);
       view.setTag(observationListViewHolder);
     } else {
       observationListViewHolder = (ObservationListViewHolder) view.getTag();
     }
 
     ObservationResponse response = observations.get(position);
-    observationListViewHolder.textViewId.setText(String.valueOf(response.getId()));
-    observationListViewHolder.textViewDateTime.setText(String.valueOf(response.getDateTime()));
-    observationListViewHolder.textViewLocation.setText(response.getLocation());
-    observationListViewHolder.textViewSpecies.setText(response.getSpecie());
+    observationListViewHolder.observationId.setText(String.valueOf(response.getId()));
+    observationListViewHolder.date.setText(String.valueOf(response.getDateTime()));
+    observationListViewHolder.location.setText(response.getLocation());
+    observationListViewHolder.specie.setText(response.getSpecie());
     return view;
   }
 
@@ -68,9 +68,9 @@ public class ObservationListAdapter extends BaseAdapter {
 
   private static class ObservationListViewHolder {
 
-    private TextView textViewId;
-    private TextView textViewDateTime;
-    private TextView textViewLocation;
-    private TextView textViewSpecies;
+    private TextView observationId;
+    private TextView date;
+    private TextView location;
+    private TextView specie;
   }
 }

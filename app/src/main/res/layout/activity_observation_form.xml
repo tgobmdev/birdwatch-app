@@ -4,8 +4,9 @@
   android:id="@+id/layoutObservation"
   android:layout_width="match_parent"
   android:layout_height="match_parent">
+
   <EditText
-    android:id="@+id/editTextDate"
+    android:id="@+id/activity_observation_form_field_date"
     style="@style/field_style"
     android:focusable="false"
     android:focusableInTouchMode="true"
@@ -15,9 +16,9 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.0"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/textViewDateLabel" />
+    app:layout_constraintTop_toBottomOf="@id/activity_observation_form_label_field_date" />
   <EditText
-    android:id="@+id/editTextTime"
+    android:id="@+id/activity_observation_form_field_time"
     style="@style/field_style"
     android:focusable="false"
     android:focusableInTouchMode="true"
@@ -27,9 +28,9 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.0"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/textViewTimeLabel" />
+    app:layout_constraintTop_toBottomOf="@id/activity_observation_form_label_field_time" />
   <EditText
-    android:id="@+id/editTextLocation"
+    android:id="@+id/activity_observation_form_field_location"
     style="@style/field_style"
     android:hint="@string/observation_location"
     android:importantForAutofill="no"
@@ -37,34 +38,34 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.0"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/textViewLocationLabel" />
+    app:layout_constraintTop_toBottomOf="@id/activity_observation_form_label_field_location" />
   <Spinner
-    android:id="@+id/spinnerSpecie"
+    android:id="@+id/activity_observation_form_field_specie"
     style="@style/field_style"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.0"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/textViewSpeciesLabel" />
+    app:layout_constraintTop_toBottomOf="@id/activity_observation_form_label_field_specie" />
   <TextView
-    android:id="@+id/textViewLocationLabel"
+    android:id="@+id/activity_observation_form_label_field_location"
     style="@style/label_field_style"
     android:text="@string/label_observation_location"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/editTextTime" />
+    app:layout_constraintTop_toBottomOf="@id/activity_observation_form_field_time" />
   <TextView
-    android:id="@+id/textViewTimeLabel"
+    android:id="@+id/activity_observation_form_label_field_time"
     style="@style/label_field_style"
     android:text="@string/label_observation_time"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/editTextDate" />
+    app:layout_constraintTop_toBottomOf="@id/activity_observation_form_field_date" />
   <TextView
-    android:id="@+id/textViewSpeciesLabel"
+    android:id="@+id/activity_observation_form_label_field_specie"
     style="@style/label_field_style"
     android:text="@string/label_observation_specie"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/editTextLocation" />
+    app:layout_constraintTop_toBottomOf="@id/activity_observation_form_field_location" />
   <TextView
-    android:id="@+id/textViewDateLabel"
+    android:id="@+id/activity_observation_form_label_field_date"
     style="@style/label_field_style"
     android:text="@string/label_observation_date"
     app:layout_constraintStart_toStartOf="parent"
