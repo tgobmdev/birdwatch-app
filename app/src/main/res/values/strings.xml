@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">Bird Watch</string>
-
+  <string name="app_name">Bird Observation Record</string>
   <string name="error_date_required">Date is a required field.</string>
   <string name="error_time_required">Time is a required field.</string>
   <string name="error_location_required">Location is a required field.</string>
   <string name="error_specie_required">Specie is a required field.</string>
-
   <string name="yes">Yes</string>
   <string name="no">No</string>
   <string name="confirmation">Confirmation</string>
@@ -20,7 +18,6 @@
   <string name="clear">Clear</string>
   <string name="open">open</string>
   <string name="close">close</string>
-
   <string name="label_edit_observation">Edit Observation</string>
   <string name="label_edit_bird">Edit Bird</string>
   <string name="label_color">Color</string>
@@ -38,6 +35,5 @@
   <string name="label_utfpr_logo_description">Logo UTFPR</string>
   <string name="label_author_name">Tiago Boaventura Miranda</string>
   <string name="label_img_delete">delete</string>
-
   <string name="warn_species_not_found">No species found in the bank to create observations</string>
 </resources>

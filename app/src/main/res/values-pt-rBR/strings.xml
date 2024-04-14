@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Registro de Observação de Aves</string>
+  <string name="error_date_required">Data é um campo obrigatório.</string>
+  <string name="error_time_required">O tempo é um campo obrigatório.</string>
+  <string name="error_location_required">A localização é um campo obrigatório.</string>
+  <string name="error_specie_required">Espécie é um campo obrigatório.</string>
+  <string name="yes">Sim</string>
+  <string name="no">Não</string>
+  <string name="confirmation">Confirmação</string>
+  <string name="cancel">Cancelar</string>
+  <string name="ok">OK</string>
+  <string name="notice">Aviso</string>
+  <string name="yyyy_mm_dd">yyyy-mm-dd</string>
+  <string name="hh_mm">hh:mm</string>
+  <string name="add">Adicionar</string>
+  <string name="save">Salvar</string>
+  <string name="clear">Limpar</string>
+  <string name="label_edit_observation">Editar Observação</string>
+  <string name="label_edit_bird">Editar Ave</string>
+  <string name="label_color">Cor</string>
+  <string name="label_common_name">Nome Comum</string>
+  <string name="label_specie">Espécie</string>
+  <string name="label_birds">Aves</string>
+  <string name="label_delete_record">Você realmente deseja excluir este registro?</string>
+  <string name="label_observation_date">Data</string>
+  <string name="label_observation_specie">Espécie</string>
+  <string name="label_observation_time">Tempo</string>
+  <string name="label_observation_location">Localização</string>
+  <string name="label_observation_id">ID</string>
+  <string name="label_observations">Observações</string>
+  <string name="label_about">Sobre</string>
+  <string name="label_utfpr_logo_description">Logo UTFPR</string>
+  <string name="label_author_name">Tiago Boaventura Miranda</string>
+  <string name="label_img_delete">delete</string>
+  <string name="warn_species_not_found">Nenhuma espécie encontrada no banco para criar observações</string>
+  <string name="open">open</string>
+  <string name="close">close</string>
+</resources>
