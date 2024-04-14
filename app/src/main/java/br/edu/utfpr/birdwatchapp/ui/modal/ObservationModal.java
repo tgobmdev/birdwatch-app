@@ -51,7 +51,7 @@ public class ObservationModal implements DataPickerListener, TimePickerListener 
     ViewGroup root = null;
 
     if (context instanceof Activity) {
-      root = (ViewGroup) ((Activity) context).findViewById(android.R.id.content);
+      root = ((Activity) context).findViewById(android.R.id.content);
     }
 
     View formView = inflater.inflate(R.layout.activity_observation_form, root, false);
@@ -73,7 +73,8 @@ public class ObservationModal implements DataPickerListener, TimePickerListener 
   private void setupFormFields(View formView) {
     EditText editTextDate = formView.findViewById(R.id.activity_observation_form_field_date);
     EditText editTextTime = formView.findViewById(R.id.activity_observation_form_field_time);
-    EditText editTextLocation = formView.findViewById(R.id.activity_observation_form_field_location);
+    EditText editTextLocation = formView.findViewById(
+        R.id.activity_observation_form_field_location);
     Spinner spinnerSpecie = formView.findViewById(R.id.activity_observation_form_field_specie);
 
     initializeFormFields(editTextDate, editTextTime, editTextLocation, spinnerSpecie);
@@ -122,7 +123,8 @@ public class ObservationModal implements DataPickerListener, TimePickerListener 
   private void saveObservation(View formView) {
     EditText editTextDate = formView.findViewById(R.id.activity_observation_form_field_date);
     EditText editTextTime = formView.findViewById(R.id.activity_observation_form_field_time);
-    EditText editTextLocation = formView.findViewById(R.id.activity_observation_form_field_location);
+    EditText editTextLocation = formView.findViewById(
+        R.id.activity_observation_form_field_location);
     Spinner spinnerSpecie = formView.findViewById(R.id.activity_observation_form_field_specie);
 
     String dateTime = editTextDate.getText().toString() + "T" + editTextTime.getText().toString();
