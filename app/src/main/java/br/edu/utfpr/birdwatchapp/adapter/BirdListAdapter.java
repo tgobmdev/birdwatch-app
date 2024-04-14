@@ -43,10 +43,10 @@ public class BirdListAdapter extends BaseAdapter {
     if (Objects.isNull(view)) {
       view = LayoutInflater.from(context).inflate(R.layout.item_bird, parent, false);
       birdListViewHolder = new BirdListViewHolder();
-      birdListViewHolder.birdId = view.findViewById(R.id.textViewBirdId);
-      birdListViewHolder.specie = view.findViewById(R.id.textViewSpecie);
-      birdListViewHolder.color = view.findViewById(R.id.textViewColor);
-      birdListViewHolder.commonName = view.findViewById(R.id.textViewCommonName);
+      birdListViewHolder.birdId = view.findViewById(R.id.item_bird_id);
+      birdListViewHolder.specie = view.findViewById(R.id.item_specie);
+      birdListViewHolder.color = view.findViewById(R.id.item_color);
+      birdListViewHolder.commonName = view.findViewById(R.id.item_common_name);
       view.setTag(birdListViewHolder);
     } else {
       birdListViewHolder = (BirdListViewHolder) view.getTag();
