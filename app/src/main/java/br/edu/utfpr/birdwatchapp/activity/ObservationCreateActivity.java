@@ -17,7 +17,7 @@ import br.edu.utfpr.birdwatchapp.component.BirdComponent;
 import br.edu.utfpr.birdwatchapp.component.ObservationComponent;
 import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
 import br.edu.utfpr.birdwatchapp.parse.ObservationParse;
-import br.edu.utfpr.birdwatchapp.pattern.builder.ObservationRequestBuilder;
+import br.edu.utfpr.birdwatchapp.pattern.builder.request.ObservationRequestBuilder;
 import br.edu.utfpr.birdwatchapp.request.ObservationRequest;
 import br.edu.utfpr.birdwatchapp.ui.config.ActionBarConfig;
 import br.edu.utfpr.birdwatchapp.ui.config.KeyboardConfig;

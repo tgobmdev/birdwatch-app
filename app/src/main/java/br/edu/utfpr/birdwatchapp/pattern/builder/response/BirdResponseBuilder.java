@@ -1,4 +1,4 @@
-package br.edu.utfpr.birdwatchapp.pattern.builder;
+package br.edu.utfpr.birdwatchapp.pattern.builder.response;
 
 import br.edu.utfpr.birdwatchapp.response.BirdResponse;
 

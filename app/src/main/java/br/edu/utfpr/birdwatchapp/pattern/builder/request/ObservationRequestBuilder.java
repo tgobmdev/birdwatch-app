@@ -1,4 +1,4 @@
-package br.edu.utfpr.birdwatchapp.pattern.builder;
+package br.edu.utfpr.birdwatchapp.pattern.builder.request;
 
 import br.edu.utfpr.birdwatchapp.request.ObservationRequest;
 import java.util.Date;

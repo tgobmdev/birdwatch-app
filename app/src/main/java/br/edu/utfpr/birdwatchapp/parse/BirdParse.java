@@ -1,7 +1,7 @@
 package br.edu.utfpr.birdwatchapp.parse;
 
 import br.edu.utfpr.birdwatchapp.entity.BirdEntity;
-import br.edu.utfpr.birdwatchapp.pattern.builder.BirdResponseBuilder;
+import br.edu.utfpr.birdwatchapp.pattern.builder.response.BirdResponseBuilder;
 import br.edu.utfpr.birdwatchapp.request.BirdRequest;
 import br.edu.utfpr.birdwatchapp.response.BirdResponse;
 import java.util.ArrayList;

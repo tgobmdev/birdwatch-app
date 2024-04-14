@@ -1,7 +1,7 @@
 package br.edu.utfpr.birdwatchapp.parse;
 
 import br.edu.utfpr.birdwatchapp.entity.ObservationEntity;
-import br.edu.utfpr.birdwatchapp.pattern.builder.ObservationResponseBuilder;
+import br.edu.utfpr.birdwatchapp.pattern.builder.response.ObservationResponseBuilder;
 import br.edu.utfpr.birdwatchapp.request.ObservationRequest;
 import br.edu.utfpr.birdwatchapp.response.ObservationResponse;
 import br.edu.utfpr.birdwatchapp.util.DateUtil;
