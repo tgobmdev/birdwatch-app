@@ -5,36 +5,23 @@
   android:layout_height="match_parent">
 
   <ImageView
-    android:id="@+id/imageView"
-    android:layout_width="384dp"
-    android:layout_height="341dp"
-    android:contentDescription="@string/logo_description"
-    app:layout_constraintBottom_toTopOf="@id/textAbout"
+    android:id="@+id/activity_about_logo"
+    android:layout_width="325dp"
+    android:layout_height="325dp"
+    android:contentDescription="@string/label_utfpr_logo_description"
+    app:layout_constraintBottom_toTopOf="@id/activity_about_author_name"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.5"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.5"
-    app:srcCompat="@drawable/logo_utfpr" />
-
+    app:srcCompat="@drawable/utfpr_logo" />
 
   <TextView
-    android:id="@+id/authorName"
+    android:id="@+id/activity_about_author_name"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="@string/author_name"
+    android:layout_marginBottom="16dp"
+    android:text="@string/label_author_name"
+    app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.5"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/imageView" />
-
-  <TextView
-    android:id="@+id/textAbout"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/text_about"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.5"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/authorName" />
+    app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

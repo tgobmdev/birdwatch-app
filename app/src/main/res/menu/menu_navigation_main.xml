@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  tools:showIn="navigation_view">
+  <group android:checkableBehavior="single">
+    <item
+      android:id="@+id/label_observation"
+      android:icon="@drawable/address_book_solid"
+      android:title="@string/label_observations" />
+    <item
+      android:id="@+id/label_bird"
+      android:icon="@drawable/feather_solid"
+      android:title="@string/label_birds" />
+    <item
+      android:id="@+id/label_about"
+      android:icon="@drawable/circle_info_solid"
+      android:title="@string/label_about" />
+  </group>
+</menu>

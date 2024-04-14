@@ -7,10 +7,8 @@ import java.util.Locale;
 
 public class DateUtil {
 
-  private static final String DATE_FORMAT_PATTERN = "yyyy-MM-dd'T'HH:mm";
-
-  public static Date parseDate(String dateString) {
-    SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_PATTERN, Locale.getDefault());
+  public static Date parseDate(String dateString, String pattern) {
+    SimpleDateFormat sdf = new SimpleDateFormat(pattern, Locale.getDefault());
     Date date;
     try {
       date = sdf.parse(dateString);
@@ -21,8 +19,12 @@ public class DateUtil {
     return date;
   }
 
-  public static String formatDate(Date date) {
-    SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_PATTERN, Locale.getDefault());
+  public static Date parseDateDefault(String dateString) {
+    return parseDate(dateString, ConstantsUtil.DATE_FORMAT_DEFAULT);
+  }
+
+  public static String formatDate(Date date, String pattern) {
+    SimpleDateFormat sdf = new SimpleDateFormat(pattern, Locale.getDefault());
     return sdf.format(date);
   }
 }

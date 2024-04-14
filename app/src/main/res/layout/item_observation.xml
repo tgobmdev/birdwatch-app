@@ -5,47 +5,78 @@
   android:layout_height="wrap_content"
   android:padding="16dp">
 
-  <TextView
-    android:id="@+id/textViewId"
-    android:textStyle="bold"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
-    android:textSize="16sp"
-    app:layout_constraintBottom_toTopOf="@+id/textViewDateTime"
+  <ImageView
+    android:id="@+id/item_observation_icon_delete"
+    style="@style/item_icon_delete_style"
+    android:contentDescription="@string/label_img_delete"
+    android:onClick="onDeleteClick"
+    android:src="@drawable/trash_solid"
+    app:layout_constraintBottom_toTopOf="@id/item_location"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintStart_toEndOf="@id/item_location"
+    app:layout_constraintTop_toBottomOf="@id/item_date_time" />
+
+  <TextView
+    android:id="@+id/item_observation_id"
+    style="@style/item_style"
+    android:layout_marginTop="0dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@id/item_label_observation_id"
     app:layout_constraintTop_toTopOf="parent" />
 
   <TextView
-    android:id="@+id/textViewDateTime"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
-    android:textSize="14sp"
-    app:layout_constraintBottom_toTopOf="@+id/textViewLocation"
-    app:layout_constraintEnd_toEndOf="parent"
+    android:id="@+id/item_label_date_time"
+    style="@style/item_label_style"
+    android:layout_marginTop="8dp"
+    android:text="@string/label_observation_date"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/textViewId" />
+    app:layout_constraintTop_toBottomOf="@id/item_label_observation_id" />
 
   <TextView
-    android:id="@+id/textViewLocation"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
-    android:textSize="14sp"
-    app:layout_constraintBottom_toTopOf="@+id/textViewSpecies"
+    android:id="@+id/item_date_time"
+    style="@style/item_style"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/textViewDateTime" />
+    app:layout_constraintEnd_toStartOf="@id/item_observation_icon_delete"
+    app:layout_constraintHorizontal_bias="1.0"
+    app:layout_constraintStart_toEndOf="@id/item_label_date_time"
+    app:layout_constraintTop_toBottomOf="@id/item_observation_id" />
 
   <TextView
-    android:id="@+id/textViewSpecies"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:textSize="14sp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
+    android:id="@+id/item_label_location"
+    style="@style/item_label_style"
+    android:layout_marginTop="8dp"
+    android:text="@string/label_observation_location"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/textViewLocation" />
+    app:layout_constraintTop_toBottomOf="@id/item_date_time" />
+
+  <TextView
+    android:id="@+id/item_location"
+    style="@style/item_style"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintEnd_toStartOf="@id/item_observation_icon_delete"
+    app:layout_constraintStart_toEndOf="@id/item_label_location"
+    app:layout_constraintTop_toBottomOf="@id/item_date_time" />
+
+  <TextView
+    android:id="@+id/item_label_observation_specie"
+    style="@style/item_label_style"
+    android:layout_marginTop="8dp"
+    android:text="@string/label_observation_specie"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/item_location" />
+
+  <TextView
+    android:id="@+id/item_observation_specie"
+    style="@style/item_style"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="1.0"
+    app:layout_constraintStart_toEndOf="@id/item_label_observation_specie"
+    app:layout_constraintTop_toBottomOf="@id/item_location" />
+
+  <TextView
+    android:id="@+id/item_label_observation_id"
+    style="@style/item_label_style"
+    android:text="@string/label_observation_id"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
