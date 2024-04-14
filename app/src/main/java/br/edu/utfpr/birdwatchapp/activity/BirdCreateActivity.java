@@ -21,7 +21,7 @@ import br.edu.utfpr.birdwatchapp.ui.config.KeyboardConfig;
 public class BirdCreateActivity extends AppCompatActivity implements ActionBarConfig,
     KeyboardConfig {
 
-  private EditText editTextViewSpecie, editTextViewColor, editTextViewCommonName;
+  private EditText formSpecie, formColor, formCommonName;
   private BirdComponent birdComponent;
   private BirdParse birdParse;
 
@@ -35,10 +35,10 @@ public class BirdCreateActivity extends AppCompatActivity implements ActionBarCo
   }
 
   private void initializeComponents() {
-    ConstraintLayout layoutBird = findViewById(R.id.layoutBird);
-    editTextViewSpecie = findViewById(R.id.textEditViewSpecie);
-    editTextViewColor = findViewById(R.id.editTextViewColor);
-    editTextViewCommonName = findViewById(R.id.textEditViewCommonName);
+    ConstraintLayout layoutBird = findViewById(R.id.layout_bird);
+    formSpecie = findViewById(R.id.activity_bird_form_field_specie);
+    formColor = findViewById(R.id.activity_bird_form_field_color);
+    formCommonName = findViewById(R.id.activity_bird_form_field_common_name);
 
     birdComponent = new BirdComponent(this);
     birdParse = new BirdParse();
@@ -53,9 +53,9 @@ public class BirdCreateActivity extends AppCompatActivity implements ActionBarCo
   }
 
   private void saveBird() {
-    String specie = editTextViewSpecie.getText().toString();
-    String color = editTextViewColor.getText().toString();
-    String commonName = editTextViewCommonName.getText().toString();
+    String specie = this.formSpecie.getText().toString();
+    String color = formColor.getText().toString();
+    String commonName = formCommonName.getText().toString();
 
     BirdRequest birdRequest = new BirdRequestBuilder() //
         .setSpecie(specie) //
@@ -72,9 +72,9 @@ public class BirdCreateActivity extends AppCompatActivity implements ActionBarCo
   }
 
   private void clearForm() {
-    editTextViewSpecie.setText("");
-    editTextViewColor.setText("");
-    editTextViewCommonName.setText("");
+    formSpecie.setText("");
+    formColor.setText("");
+    formCommonName.setText("");
   }
 
   @Override

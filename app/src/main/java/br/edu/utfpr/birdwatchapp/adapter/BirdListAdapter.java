@@ -43,20 +43,20 @@ public class BirdListAdapter extends BaseAdapter {
     if (Objects.isNull(view)) {
       view = LayoutInflater.from(context).inflate(R.layout.item_bird, parent, false);
       birdListViewHolder = new BirdListViewHolder();
-      birdListViewHolder.textViewBirdId = view.findViewById(R.id.textViewBirdId);
-      birdListViewHolder.textViewSpecie = view.findViewById(R.id.textViewSpecie);
-      birdListViewHolder.textViewColor = view.findViewById(R.id.textViewColor);
-      birdListViewHolder.textViewCommonName = view.findViewById(R.id.textViewCommonName);
+      birdListViewHolder.birdId = view.findViewById(R.id.textViewBirdId);
+      birdListViewHolder.specie = view.findViewById(R.id.textViewSpecie);
+      birdListViewHolder.color = view.findViewById(R.id.textViewColor);
+      birdListViewHolder.commonName = view.findViewById(R.id.textViewCommonName);
       view.setTag(birdListViewHolder);
     } else {
       birdListViewHolder = (BirdListViewHolder) view.getTag();
     }
 
     BirdResponse response = birds.get(position);
-    birdListViewHolder.textViewBirdId.setText(String.valueOf(response.getId()));
-    birdListViewHolder.textViewSpecie.setText(response.getSpecie());
-    birdListViewHolder.textViewColor.setText(response.getColor());
-    birdListViewHolder.textViewCommonName.setText(response.getCommonName());
+    birdListViewHolder.birdId.setText(String.valueOf(response.getId()));
+    birdListViewHolder.specie.setText(response.getSpecie());
+    birdListViewHolder.color.setText(response.getColor());
+    birdListViewHolder.commonName.setText(response.getCommonName());
     return view;
   }
 
@@ -68,9 +68,9 @@ public class BirdListAdapter extends BaseAdapter {
 
   private static class BirdListViewHolder {
 
-    private TextView textViewBirdId;
-    private TextView textViewSpecie;
-    private TextView textViewColor;
-    private TextView textViewCommonName;
+    private TextView birdId;
+    private TextView specie;
+    private TextView color;
+    private TextView commonName;
   }
 }
